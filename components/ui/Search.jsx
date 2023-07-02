@@ -19,6 +19,20 @@ const Search = ({setIsSearchModal}) => {
                             <span className='fon-bold'>Good Pizza</span>
                             <span className='font-bold'>$10</span>
                         </li>
+                        <li className='flex items-center justify-between p-1 hover:bg-primary transition-all'>
+                            <div className='relative flex'>
+                                <Image src="/images/f1.png" alt="" width={48} height={48}  />
+                            </div>
+                            <span className='fon-bold'>Good Pizza</span>
+                            <span className='font-bold'>$10</span>
+                        </li>
+                        <li className='flex items-center justify-between p-1 hover:bg-primary transition-all'>
+                            <div className='relative flex'>
+                                <Image src="/images/f1.png" alt="" width={48} height={48}  />
+                            </div>
+                            <span className='fon-bold'>Good Pizza</span>
+                            <span className='font-bold'>$10</span>
+                        </li>
                     </ul>
                     <button className='absolute top-4 right-4' onClick={() => setIsSearchModal(false)}>
                         <AiFillCloseCircle size={25} className='hover:text-primary transition-all'/>
