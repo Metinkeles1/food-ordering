@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Input from '../components/form/Input'
 import Header from '../components/layout/Header'
 import Home from './home'
 
@@ -13,7 +14,7 @@ export default function Index() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />       
       </Head>
       <Header/>
-      <Home/>
+      <Home/>     
     </div>
   )
 }
