@@ -1,53 +1,77 @@
-import Input from './form/Input'
-import Title from './ui/Title'
+import React from "react";
+import Input from "./form/Input";
+import Title from "./ui/Title";
+import { useFormik } from "formik";
 
 const Reservation = () => {
+    const onSubmit = async (values, actions) => {
+        await new Promise((resolve) => setTimeout(resolve, 4000));
+        actions.resetForm();
+    };
+
+    const { values, handleSubmit, handleChange } = useFormik({
+        initialValues: {
+            fullName: "",
+            phoneNumber: "",
+            email: "",
+            persons: "",
+            date: "",
+        },
+        onSubmit,
+    });
+
     const inputs = [
         {
-            id:1,
-            name:"fullName",
+            id: 1,
+            name: "fullName",
             type: "text",
-            placeholder: "Your Full Name"
+            placeholder: "Your Full Name",
+            value: values.fullName,
         },
         {
             id: 2,
             name: "phoneNumber",
             type: "number",
-            placeholder: "Your Phone Number"
+            placeholder: "Your Phone Number",
+            value: values.phoneNumber,
         },
         {
             id: 3,
             name: "email",
             type: "email",
-            placeholder: "Your Email Address"
+            placeholder: "Your Email Address",
+            value: values.email,
         },
         {
             id: 4,
             name: "persons",
             type: "number",
-            placeholder: "How Many Persons?"
+            placeholder: "How Many Persons?",
+            value: values.persons,
         },
         {
             id: 5,
             name: "date",
             type: "datetime-local",
-            placeholder: "Date "
-        }
-    ]
+            value: values.date,
+        },
+    ];
 
-  return (
-    <div className='container mx-auto py-12'>
+    return (
+        <div className="container mx-auto py-12">
         <Title addClass="text-[40px] mb-10">Book A Table</Title>
-        <div className="flex justify-between flex-wrap-reverse gap-x-10">
-            <div className='lg:flex-1 w-full'>
-                <div className='flex flex-col gap-y-3'>
+        <div className="flex justify-between flex-wrap-reverse gap-10">
+            <form className="lg:flex-1 w-full" onSubmit={handleSubmit}>
+                <div className="flex flex-col gap-y-3">
                     {inputs.map((input) => (
-                        <Input key={input.id} {...input} />
+                    <Input key={input.id} {...input} onChange={handleChange} />
                     ))}
                 </div>
-                <button className="btn-primary my-4">Book Now</button>
-            </div>
-            <div className='lg:flex-1 w-full'>
+                <button className="btn-primary mt-4" type="submit">
+                    BOOK NOW
+                </button>
+            </form>
+        <div className="lg:flex-1 w-full">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3006.4228552601785!2d29.0255963!3d41.1034552!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1688370369127!5m2!1str!2str"                   
                     allowFullScreen={true}
