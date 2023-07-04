@@ -1,0 +1,23 @@
+import Image from 'next/image'
+import React from 'react'
+
+const CustomerItem = ({imgSrc}) => {
+  return (
+    <div className='mt-4'>
+        <div className='p-6 bg-secondary text-white rounded-[5px]'>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, distinctio sequi. Sed eligendi at dolore?
+            </p>
+            <div className='flex flex-col mt-4'>
+                <span className='text-lg font-semibold'>Moana Michell</span>
+                <span className='text-[15px]'>magna aliqua</span>
+            </div>
+        </div>
+        <div className="relative w-28 h-28 border-4 rounded-full border-primary mt-8 before:content-[''] before:absolute before:top-0 flex justify-center before:-translate-y-2 before:rotate-45 before:bg-primary before:w-5 before:h-5">           
+            <Image src={imgSrc} alt='' layout='fill' objectFit='contain' className='rounded-full'/>
+        </div>
+    </div>
+  )
+}
+
+export default CustomerItem
