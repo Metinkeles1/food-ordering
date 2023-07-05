@@ -41,7 +41,7 @@ const Carousel = () => {
                 <div>
                     <div className='mt-52 text-white flex flex-col items-start gap-y-10'>
                         <Title addClass='text-6xl'>Fast Food Restaurant</Title>
-                        <p className='text-sm sm:w-full md:w-3/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2'>
+                        <p className='text-sm sm:w-full md:w-3/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2 '>
                         Doloremque, itaque aperiam facilis rerum, commodi, temporibus
                         sapiente ad mollitia laborum quam quisquam esse error unde.
                         Tempora ex doloremque, labore, sunt repellat dolore, iste magni
@@ -51,7 +51,7 @@ const Carousel = () => {
                     </div>
                 </div>
                 <div>
-                    <div className='mt-52 text-white flex flex-col items-start gap-y-10'>
+                    <div className='relative text-white top-48 flex flex-col items-start gap-y-10'>
                         <Title addClass='text-6xl'>Fast Food Restaurant</Title>
                         <p className='text-sm sm:w-full md:w-3/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2'>
                         Doloremque, itaque aperiam facilis rerum, commodi, temporibus
