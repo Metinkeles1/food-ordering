@@ -16,7 +16,6 @@ function Index() {
       <About/>
       <Reservation/>
       <Customers/>
-      <Footer/>
     </React.Fragment>
   )
 }
