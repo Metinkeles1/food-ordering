@@ -34,31 +34,31 @@ const Footer = () => {
                 href=""
                 className="w-8 h-8 grid place-content-center bg-white text-secondary rounded-full "
               >
-                <i className="fab fa-facebook"></i>
+                <i className="fa fa-facebook"></i>
               </a>
               <a
                 href=""
                 className="w-8 h-8 grid place-content-center bg-white text-secondary rounded-full"
               >
-                <i className="fab fa-twitter"></i>
+                <i className="fa fa-twitter"></i>
               </a>
               <a
                 href=""
                 className="w-8 h-8 grid place-content-center bg-white text-secondary rounded-full"
               >
-                <i className="fab fa-linkedin"></i>
+                <i className="fa fa-linkedin"></i>
               </a>
               <a
                 href=""
                 className="w-8 h-8 grid place-content-center bg-white text-secondary rounded-full"
               >
-                <i className="fab fa-instagram"></i>
+                <i className="fa fa-instagram"></i>
               </a>
               <a
                 href=""
                 className="w-8 h-8 grid place-content-center bg-white text-secondary rounded-full"
               >
-                <i className="fab fa-pinterest"></i>
+                <i className="fa fa-pinterest"></i>
               </a>
             </div>
           </div>

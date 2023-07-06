@@ -1,4 +1,3 @@
-import React from "react";
 import Input from "./form/Input";
 import Title from "./ui/Title";
 import { useFormik } from "formik";
@@ -24,48 +23,48 @@ const Reservation = () => {
 
     const inputs = [
         {
-        id: 1,
-        name: "fullName",
-        type: "text",
-        placeholder: "Your Full Name",
-        value: values.fullName,
-        errorMessage: errors.fullName,
-        touched: touched.fullName,
+            id: 1,
+            name: "fullName",
+            type: "text",
+            placeholder: "Your Full Name",
+            value: values.fullName,
+            errorMessage: errors.fullName,
+            touched: touched.fullName,
         },
         {
-        id: 2,
-        name: "phoneNumber",
-        type: "number",
-        placeholder: "Your Phone Number",
-        value: values.phoneNumber,       
-        errorMessage: errors.phoneNumber,
-        touched: touched.phoneNumber, 
+            id: 2,
+            name: "phoneNumber",
+            type: "number",
+            placeholder: "Your Phone Number",
+            value: values.phoneNumber,       
+            errorMessage: errors.phoneNumber,
+            touched: touched.phoneNumber, 
         },
         {
-        id: 3,
-        name: "email",
-        type: "email",
-        placeholder: "Your Email Address",
-        value: values.email,
-        errorMessage: errors.email,
-        touched: touched.email
+            id: 3,
+            name: "email",
+            type: "email",
+            placeholder: "Your Email Address",
+            value: values.email,
+            errorMessage: errors.email,
+            touched: touched.email
         },
         {
-        id: 4,
-        name: "persons",
-        type: "number",
-        placeholder: "How Many Persons?",
-        value: values.persons,
-        errorMessage: errors.persons,
-        touched: touched.persons
+            id: 4,
+            name: "persons",
+            type: "number",
+            placeholder: "How Many Persons?",
+            value: values.persons,
+            errorMessage: errors.persons,
+            touched: touched.persons
         },
         {
-        id: 5,
-        name: "date",
-        type: "datetime-local",
-        value: values.date,
-        errorMessage: errors.date,
-        touched: touched.date
+            id: 5,
+            name: "date",
+            type: "datetime-local",
+            value: values.date,
+            errorMessage: errors.date,
+            touched: touched.date
         },
     ];
 
