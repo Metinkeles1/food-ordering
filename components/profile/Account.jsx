@@ -84,7 +84,7 @@ const Account = () => {
       <div className='grid lg:grid-cols-2 gird-cols-1 gap-4'>
         {inputs.map((input) => (
           <Input
-            key='input.id'
+            key={input.id}
             {...input}
             onBlur={handleBlur}
             onChange={handleChange}
