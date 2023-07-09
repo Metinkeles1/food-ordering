@@ -3,9 +3,8 @@ import { FaWindowMaximize, FaSignOutAlt } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { BiSolidCategory } from "react-icons/bi";
 import { useState } from "react";
-import Password from "../../components/profile/Password";
-import Order from "../../components/profile/Order";
 import Products from "../../components/admin/Products";
+import Order from "../../components/admin/Order";
 
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
@@ -72,8 +71,7 @@ const Profile = () => {
         </ul>
       </div>
       {tabs === 0 && <Products />}
-      {tabs === 1 && <Password />}
-      {tabs === 2 && <Order />}
+      {tabs === 1 && <Order />}
     </div>
   );
 };
