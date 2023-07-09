@@ -5,6 +5,7 @@ import { BiSolidCategory } from "react-icons/bi";
 import { useState } from "react";
 import Products from "../../components/admin/Products";
 import Order from "../../components/admin/Order";
+import Category from "../../components/admin/Category";
 
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
@@ -72,6 +73,7 @@ const Profile = () => {
       </div>
       {tabs === 0 && <Products />}
       {tabs === 1 && <Order />}
+      {tabs === 2 && <Category />}
     </div>
   );
 };

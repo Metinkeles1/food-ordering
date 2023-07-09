@@ -43,7 +43,7 @@ const Order = () => {
                 Cash
               </td>
               <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
+                <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800'>
                   Preparing
                 </span>
               </td>
