@@ -106,7 +106,7 @@ const Footer = () => {
           <Input placeholder='Link Address' value='https://' onChange='' />
           <Input
             placeholder='Icon Name'
-            // defaultValue='fa fa-'
+            defaultValue
             onChange={(e) => setIconName(e.target.value)}
             value={iconName}
           />
@@ -115,7 +115,7 @@ const Footer = () => {
             type='button'
             onClick={() => {
               setIcons([...icons, iconName]);
-              setIconName("fa fa-");
+              setIconName("");
             }}
           >
             Add
