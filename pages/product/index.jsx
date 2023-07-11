@@ -1,11 +1,30 @@
 import Image from "next/image";
 import { useState } from "react";
 import Title from "../../components/ui/Title";
+import { addProduct } from "../../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const itemsExtra = [
   { id: 1, name: "Extra 1", price: 1 },
   { id: 2, name: "Extra 2", price: 2 },
   { id: 3, name: "Extra 3", price: 3 },
+];
+
+const foodItems = [
+  {
+    id: 1,
+    name: "Pizza 1",
+    price: 10,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fugit corporis ex laboriosam tenetur at ad aspernatur eius numquam molestiae.",
+    extraOptions: [
+      {
+        id: 1,
+        name: "Extra 1",
+        price: 1,
+      },
+    ],
+  },
 ];
 
 const Index = () => {
@@ -14,6 +33,9 @@ const Index = () => {
   const [size, setSize] = useState(0);
   const [extraItems, setExtraItems] = useState(itemsExtra);
   const [extras, setExtras] = useState([]);
+  const cart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
 
   const handleSize = (sizeIndex) => {
     const difference = prices[sizeIndex] - prices[size];
@@ -36,6 +58,12 @@ const Index = () => {
       setExtras(extras.filter((extra) => extra.id !== item.id));
     }
   };
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...foodItems[0], extras, price, quantity: 1 }));
+  };
+
+  console.log(cart);
 
   return (
     <div className='flex items-center md:h-[calc(100vh_-_88px)] gap-5 py-20 flex-wrap '>
@@ -96,7 +124,9 @@ const Index = () => {
             </label>
           ))}
         </div>
-        <button className='btn-primary'>Add to Cart</button>
+        <button className='btn-primary' onClick={handleClick}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );
