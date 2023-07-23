@@ -6,6 +6,5 @@ export const adminSchema = Yup.object({
     password: Yup.string()
         .required("Password is required")
         .min(5, "Password must be at leasts 8 characters.")
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-            "Password must contain at least one uppercase, one lowercase, one number.")
+ 
 })
