@@ -89,4 +89,19 @@ const Login = () => {
   );
 };
 
+export const getServerSideProps = (ctx) => {
+  const myCookie = ctx.req?.cookies || "";
+  if (myCookie.token === process.env.ADMIN_TOKEN) {
+    return {
+      redirect: {
+        destination: "/admin/profile",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+};
+
 export default Login;
