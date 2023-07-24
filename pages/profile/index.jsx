@@ -1,13 +1,30 @@
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 import { FaKey, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { useState } from "react";
 import Account from "../../components/profile/Account";
 import Password from "../../components/profile/Password";
 import Order from "../../components/profile/Order";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 const Profile = () => {
+  const { data: session } = useSession();
   const [tabs, setTabs] = useState(0);
+  const { push } = useRouter();
+
+  const handleSignOut = () => {
+    if (confirm("Are you sure you want to sign out?")) {
+      signOut({ redirect: false });
+      push("/auth/login");
+    }
+  };
+
+  useEffect(() => {
+    if (!session) push("/auth/login");
+  }, [session, push]);
 
   return (
     <div className='flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col lg:mb-0 mb-10'>
@@ -51,10 +68,8 @@ const Profile = () => {
             <button className='ml-1'>Orders</button>
           </li>
           <li
-            onClick={() => setTabs(3)}
-            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
-              tabs === 3 && "bg-primary text-white"
-            }`}
+            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center `}
+            onClick={handleSignOut}
           >
             <FaSignOutAlt />
             <button className='ml-1'>Exit</button>
