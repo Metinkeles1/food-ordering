@@ -8,6 +8,7 @@ import Password from "../../components/profile/Password";
 import Order from "../../components/profile/Order";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { axios } from "axios";
 
 const Profile = ({ session }) => {
   const [tabs, setTabs] = useState(0);
@@ -21,7 +22,7 @@ const Profile = ({ session }) => {
   };
 
   useEffect(() => {
-    push("/auth/login");
+    if (!session) push("/auth/login");
   }, [session, push]);
 
   return (
@@ -81,7 +82,7 @@ const Profile = ({ session }) => {
   );
 };
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req, params }) {
   const session = await getSession({ req });
 
   if (!session) {
@@ -92,6 +93,10 @@ export async function getServerSideProps({ req }) {
       },
     };
   }
+
+  const user = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.id}`
+  );
 
   return {
     props: {
