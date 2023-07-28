@@ -1,23 +1,33 @@
-import Input from "../form/Input";
-import Title from "../ui/Title";
+import React from "react";
+import Input from "../../components/form/Input";
+import Title from "../../components/ui/Title";
 import { useFormik } from "formik";
 import { profileSchema } from "../../schema/profile";
+import axios from "axios";
 
-const Account = () => {
+const Account = ({ user }) => {
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
+        values
+      );
+    } catch (err) {
+      console.log(err);
+    }
     actions.resetForm();
   };
 
-  const { values, touched, errors, handleSubmit, handleChange, handleBlur } =
+  const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
+      enableReinitialize: true,
       initialValues: {
-        fullName: "",
-        phoneNumber: "",
-        email: "",
-        address: "",
-        job: "",
-        bio: "",
+        fullName: user?.fullName,
+        phoneNumber: user?.phoneNumber,
+        email: user?.email,
+        address: user?.address,
+        job: user?.job,
+        bio: user?.bio,
       },
       onSubmit,
       validationSchema: profileSchema,
@@ -54,7 +64,7 @@ const Account = () => {
       id: 4,
       name: "address",
       type: "text",
-      placeholder: "Your Address?",
+      placeholder: "Your Address",
       value: values.address,
       errorMessage: errors.address,
       touched: touched.address,
@@ -63,7 +73,7 @@ const Account = () => {
       id: 5,
       name: "job",
       type: "text",
-      placeholder: "Your Job?",
+      placeholder: "Your Job",
       value: values.job,
       errorMessage: errors.job,
       touched: touched.job,
@@ -72,16 +82,16 @@ const Account = () => {
       id: 6,
       name: "bio",
       type: "text",
-      placeholder: "Your Bio?",
+      placeholder: "Your Bio",
       value: values.bio,
       errorMessage: errors.bio,
       touched: touched.bio,
     },
   ];
   return (
-    <form className='flex-1 lg:p-8 lg:mt-0 mt-5'>
-      <Title addClass='text-[40px] mb-4'>Account Settings</Title>
-      <div className='grid lg:grid-cols-2 gird-cols-1 gap-4'>
+    <form className='lg:p-8 flex-1 lg:mt-0 mt-5' onSubmit={handleSubmit}>
+      <Title addClass='text-[40px]'>Account Settings</Title>
+      <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 mt-4'>
         {inputs.map((input) => (
           <Input
             key={input.id}
@@ -91,7 +101,9 @@ const Account = () => {
           />
         ))}
       </div>
-      <button className='btn-primary mt-4'>Update</button>
+      <button className='btn-primary mt-4' type='submit'>
+        Update
+      </button>
     </form>
   );
 };

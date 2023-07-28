@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getSession, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { FaKey, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { useState } from "react";
@@ -8,9 +8,10 @@ import Password from "../../components/profile/Password";
 import Order from "../../components/profile/Order";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { axios } from "axios";
+import axios from "axios";
 
-const Profile = ({ session }) => {
+const Profile = ({ user }) => {
+  const { data: session } = useSession();
   const [tabs, setTabs] = useState(0);
   const { push } = useRouter();
 
@@ -30,13 +31,13 @@ const Profile = ({ session }) => {
       <div className='lg:w-80 w-100 flex-shrink-0 mt-8'>
         <div className='relative border border-b-0 flex flex-col items-center px-10 py-5 '>
           <Image
-            src='/images/client2.jpg'
+            src={user.image ? user.image : "/images/client2.jpg"}
             alt=''
             width={100}
             height={100}
             className='rounded-full'
           />
-          <b className='text-2xl mt-1'>John Doe</b>
+          <b className='text-2xl mt-1'>{user.fullName}</b>
         </div>
         <ul className='text-center font-semibold'>
           <li
@@ -75,32 +76,21 @@ const Profile = ({ session }) => {
           </li>
         </ul>
       </div>
-      {tabs === 0 && <Account />}
-      {tabs === 1 && <Password />}
+      {tabs === 0 && <Account user={user} />}
+      {tabs === 1 && <Password user={user} />}
       {tabs === 2 && <Order />}
     </div>
   );
 };
 
 export async function getServerSideProps({ req, params }) {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/auth/login",
-        permanent: false,
-      },
-    };
-  }
-
   const user = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/users/${params.id}`
   );
 
   return {
     props: {
-      session,
+      user: user ? user.data : null,
     },
   };
 }

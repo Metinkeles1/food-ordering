@@ -1,16 +1,27 @@
-import Input from "../form/Input";
-import Title from "../ui/Title";
+import React from "react";
+import Input from "../../components/form/Input";
+import Title from "../../components/ui/Title";
 import { useFormik } from "formik";
+import { registerSchema } from "../../schema/register";
 import { newPasswordSchema } from "../../schema/newPassword";
+import axios from "axios";
 
-const Password = () => {
+const Password = ({ user }) => {
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-    actions.resetForm();
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
+        values
+      );
+      actions.resetForm();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const { values, touched, errors, handleSubmit, handleChange, handleBlur } =
+  const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
+      enableReinitialize: true,
       initialValues: {
         password: "",
         confirmPassword: "",
@@ -32,16 +43,16 @@ const Password = () => {
       id: 2,
       name: "confirmPassword",
       type: "password",
-      placeholder: "Your confirm Password",
+      placeholder: "Your Confirm Password",
       value: values.confirmPassword,
       errorMessage: errors.confirmPassword,
       touched: touched.confirmPassword,
     },
   ];
   return (
-    <form className='flex-1 lg:p-8 lg:mt-0 mt-5' onSubmit={handleSubmit}>
-      <Title addClass='text-[40px] mb-4'>Settings</Title>
-      <div className='grid lg:grid-cols-2 gird-cols-1 gap-4'>
+    <form className='lg:p-8 flex-1 lg:mt-0 mt-5' onSubmit={handleSubmit}>
+      <Title addClass='text-[40px]'>Password</Title>
+      <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 mt-4'>
         {inputs.map((input) => (
           <Input
             key={input.id}
