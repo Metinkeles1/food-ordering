@@ -6,6 +6,7 @@ import { useState } from "react";
 import Products from "../../components/admin/Products";
 import Order from "../../components/admin/Order";
 import Category from "../../components/admin/Category";
+import AddProduct from "../../components/admin/AddProduct";
 import Footer from "../../components/admin/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -13,6 +14,7 @@ import { toast } from "react-toastify";
 
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
+  const [isProductModal, setIsProductModal] = useState(false);
 
   const { push } = useRouter();
 
@@ -95,6 +97,13 @@ const Profile = () => {
       {tabs === 1 && <Order />}
       {tabs === 2 && <Category />}
       {tabs === 3 && <Footer />}
+      {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
+      <button
+        onClick={() => setIsProductModal(true)}
+        className='btn-primary w-12 h-12 !p-0 text-4xl mt-2'
+      >
+        +
+      </button>
     </div>
   );
 };
