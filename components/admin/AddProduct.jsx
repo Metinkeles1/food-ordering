@@ -1,9 +1,23 @@
-import Image from "next/image";
+import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import Title from "../ui/Title";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const AddProduct = ({ setIsProductModal }) => {
+  const [file, setFile] = useState();
+  const [srcImage, setSrcImage] = useState();
+
+  const handleOnChange = (changeEvent) => {
+    const reader = new FileReader();
+
+    reader.onload = function (onLoadEvent) {
+      setSrcImage(onLoadEvent.target.result);
+      setFile(changeEvent.target.files[0]);
+    };
+
+    reader.readAsDataURL(changeEvent.target.files[0]);
+  };
+
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 after:content-[''] after:w-screen after:h-screen after:opacity-50 after:bg-white after:absolute after:top-0 after:left-0 grid place-content-center">
       <OutsideClickHandler onOutsideClick={() => setIsProductModal(false)}>
@@ -12,8 +26,26 @@ const AddProduct = ({ setIsProductModal }) => {
             <Title addClass='text-[40px] text-center'>Add a New Product</Title>
 
             <div className='flex flex-col text-sm mt-6'>
-              <span className='font-semibold mb-1'>Choose an image</span>
-              <input type='file' />
+              <label className='flex items-center gap-2'>
+                <input
+                  type='file'
+                  onChange={(e) => handleOnChange(e)}
+                  className='hidden'
+                />
+                <button className='btn-primary !rounded-none !bg-blue-500 pointer-events-none'>
+                  Choose an Image
+                </button>
+                {srcImage && (
+                  <div>
+                    {/* eslint-disable-next-line @next/next/no-img-element*/}
+                    <img
+                      src={srcImage}
+                      alt=''
+                      className='w-12 h-12 rounded-full'
+                    />
+                  </div>
+                )}
+              </label>
             </div>
 
             <div className='flex flex-col text-sm mt-4'>
