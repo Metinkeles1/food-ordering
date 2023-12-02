@@ -2,6 +2,7 @@ import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import Title from "../ui/Title";
 import { AiFillCloseCircle } from "react-icons/ai";
+import axios from "axios";
 
 const AddProduct = ({ setIsProductModal }) => {
   const [file, setFile] = useState();
@@ -16,6 +17,21 @@ const AddProduct = ({ setIsProductModal }) => {
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
+  };
+
+  const handleCreate = async () => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "food-ordering");
+
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dbjl5hjku/image/upload",
+        data
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -112,7 +128,10 @@ const AddProduct = ({ setIsProductModal }) => {
               </div>
             </div>
             <div className='flex justify-end'>
-              <button className='btn-primary !bg-success ml-auto'>
+              <button
+                onClick={handleCreate}
+                className='btn-primary !bg-success ml-auto'
+              >
                 Create
               </button>
             </div>
