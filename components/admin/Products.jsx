@@ -42,8 +42,8 @@ const Products = () => {
   return (
     <div className='flex-1 lg:p-8 lg:mt-0 mt-5'>
       <Title addClass='text-[40px] mb-4'>Products</Title>
-      <div className='overflow-x-auto w-full mt-5'>
-        <table className='w-full text-sm text-center text-gray-secondary min-w-[1000px] '>
+      <div className='overflow-x-auto  max-h-[400px] w-full mt-5'>
+        <table className='w-full text-sm text-center text-gray-secondary min-w-[1000px]'>
           <thead className='text-xs text-gray-200 uppercase bg-gray-700 '>
             <tr>
               <th scope='col' className='py-3 px-6'>
