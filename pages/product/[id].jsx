@@ -4,6 +4,7 @@ import Title from "../../components/ui/Title";
 import { addProduct } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Index = ({ food }) => {
   const [prices, setPrices] = useState(food.prices);
@@ -39,6 +40,9 @@ const Index = ({ food }) => {
 
   const handleClick = () => {
     dispatch(addProduct({ food, extras, price, quantity: 1 }));
+    toast.success("Added to cart", {
+      autoClose: 1000,
+    });
   };
 
   return (
@@ -60,7 +64,7 @@ const Index = ({ food }) => {
                 className='relative w-8 h-8 cursor-pointer'
                 onClick={() => handleSize(0)}
               >
-                <Image src='/images/size.png' alt='' layout='fill' />
+                <Image src='/images/size.png' alt='' layout='fill' priority />
                 <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>
                   Small
                 </span>
@@ -69,7 +73,7 @@ const Index = ({ food }) => {
                 className='relative w-12 h-12 cursor-pointer'
                 onClick={() => handleSize(1)}
               >
-                <Image src='/images/size.png' alt='' layout='fill' />
+                <Image src='/images/size.png' alt='' layout='fill' priority />
                 <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>
                   Medium
                 </span>
@@ -78,7 +82,7 @@ const Index = ({ food }) => {
                 className='relative w-16 h-16 cursor-pointer'
                 onClick={() => handleSize(2)}
               >
-                <Image src='/images/size.png' alt='' layout='fill' />
+                <Image src='/images/size.png' alt='' layout='fill' priority />
                 <span className='absolute top-0 -right-6 text-xs bg-primary rounded-full px-[5px] font-medium'>
                   Large
                 </span>
@@ -88,7 +92,7 @@ const Index = ({ food }) => {
         )}
         <div className='flex gap-x-4 my-6 md:justify-start justify-center'>
           {extraItems.map((item) => (
-            <label className='flex items-center gap-x-1' key={item.id}>
+            <label className='flex items-center gap-x-1' key={item._id}>
               <input
                 type='checkbox'
                 className='w-5 h-5 accent-primary'

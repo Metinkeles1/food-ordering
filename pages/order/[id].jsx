@@ -1,6 +1,7 @@
 import Image from "next/image";
+import axios from "axios";
 
-const Index = () => {
+const Index = ({ order }) => {
   return (
     <div className='overflow-x-auto'>
       <div className='min-h-[calc(100vh_-_433px)] flex justify-center items-center flex-col p-10 min-w-[1000px]'>
@@ -25,16 +26,16 @@ const Index = () => {
             <tbody>
               <tr className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'>
                 <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
-                  <span>631231516</span>
+                  <span>{order?._id.substring(0, 5)}...</span>
                 </td>
                 <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                  Metin Keles
+                  {order?.customer}
                 </td>
                 <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                  Istanbul
+                  {order?.address}
                 </td>
                 <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                  $18
+                  ${order.total}
                 </td>
               </tr>
             </tbody>
@@ -85,6 +86,18 @@ const Index = () => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps = async ({ params }) => {
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/orders/${params.id}`
+  );
+
+  return {
+    props: {
+      order: res.data ? res.data : null,
+    },
+  };
 };
 
 export default Index;
