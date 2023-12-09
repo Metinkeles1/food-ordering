@@ -49,7 +49,7 @@ const Category = () => {
   };
 
   return (
-    <div className='flex-1 lg:p-8 lg:mt-0 mt-5'>
+    <div className='flex-1 lg:p-8 lg:mt-0 mt-5 md:w-[600px]'>
       <Title addClass='text-[40px] mb-4'>Category</Title>
       <div className='mt-5 '>
         <div className='flex flex-1 gap-4 items-center'>

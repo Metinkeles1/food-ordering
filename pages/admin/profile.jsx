@@ -33,7 +33,7 @@ const Profile = () => {
   };
 
   return (
-    <div className='flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col lg:mb-0 mb-10'>
+    <div className='flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col lg:mb-0 mb-10 '>
       <div className='lg:w-80 w-100 flex-shrink-0 mt-8'>
         <div className='relative border border-b-0 flex flex-col items-center px-10 py-5 '>
           <Image
@@ -93,17 +93,19 @@ const Profile = () => {
           </li>
         </ul>
       </div>
-      {tabs === 0 && <Products />}
-      {tabs === 1 && <Order />}
-      {tabs === 2 && <Category />}
-      {tabs === 3 && <Footer />}
-      {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
-      <button
-        onClick={() => setIsProductModal(true)}
-        className='btn-primary w-12 h-12 !p-0 text-4xl mt-2'
-      >
-        +
-      </button>
+      <div className='overflow-auto'>
+        {tabs === 0 && <Products />}
+        {tabs === 1 && <Order />}
+        {tabs === 2 && <Category />}
+        {tabs === 3 && <Footer />}
+        {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
+        <button
+          onClick={() => setIsProductModal(true)}
+          className='btn-primary !w-12 !h-12 !p-0 absolute right-5 top-28 text-4xl'
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 };
