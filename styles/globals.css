@@ -2,30 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.btn-primary{
-  @apply text-white px-[30px] py-[8px] rounded-3xl bg-primary cursor-pointer hover:opacity-70 transition-all
+.btn-primary {
+  @apply text-white px-[30px] py-[8px] rounded-3xl bg-primary cursor-pointer hover:opacity-70 transition-all disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
-.slick-dots{
-  @apply !flex justify-start w-full
+.slick-dots {
+  @apply !flex justify-start w-full;
 }
 
-.slick-dots .slick-active div{
-  @apply bg-primary w-4 h-4
+.slick-dots .slick-active div {
+  @apply bg-primary w-4 h-4;
 }
 
-.slick-dots div{
-  @apply !m-0 !mt-24
+.slick-dots div {
+  @apply !m-0 !mt-24;
 }
