@@ -21,6 +21,8 @@ const Cart = ({ userList }) => {
     method: 0,
   };
 
+  // console.log(cart.products[0].food.extraOptions);
+
   const createOrder = async () => {
     try {
       if (session) {
@@ -72,17 +74,26 @@ const Cart = ({ userList }) => {
             <tbody>
               {cart.products.map((product) => (
                 <tr
-                  key={product._id}
+                  key={product?.food?._id}
                   className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
                 >
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
-                    <Image src='/images/f1.png' alt='' width='50' height='50' />
-                    <span>{product.name}</span>
+                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-normal'>
+                    <Image
+                      src={product?.food?.img}
+                      alt=''
+                      width='50'
+                      height='50'
+                    />
+                    <span>{product?.food?.title}</span>
                   </td>
                   <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    {product.extras.map((item) => (
-                      <span key={item.id}>{item.text},</span>
-                    ))}
+                    {product.extras.length > 0 ? (
+                      product.extras.map((item) => (
+                        <span key={item._id}>{item.text},</span>
+                      ))
+                    ) : (
+                      <span>Empty</span>
+                    )}
                   </td>
                   <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
                     ${product.price}
