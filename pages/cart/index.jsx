@@ -15,6 +15,7 @@ const Cart = ({ userList }) => {
   const router = useRouter();
 
   const newOrder = {
+    email: user?.email,
     customer: user?.fullName,
     address: user?.address ? user?.address : "No address",
     total: cart.total,
