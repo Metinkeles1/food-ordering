@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Title from "../ui/Title";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
@@ -51,28 +52,27 @@ const Order = () => {
           </thead>
           <tbody>
             {data.map((order) => (
-              <tr
-                key={order._id}
-                className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
-              >
-                <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
-                  <span>{order._id.substring(0, 6)}...</span>
-                </td>
-                <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                  <span>{order.address}</span>
-                </td>
-                <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                  {order.createdAt}
-                </td>
-                <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                  ${order.total}
-                </td>
-                <td className='px-6 py-4 whitespace-nowrap'>
-                  <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                    {status[order?.status]}
-                  </span>
-                </td>
-              </tr>
+              <Link key={order._id} href={`/order/${order._id}`}>
+                <tr className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'>
+                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
+                    <span>{order._id.substring(0, 6)}...</span>
+                  </td>
+                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                    <span>{order.address}</span>
+                  </td>
+                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                    {order.createdAt}
+                  </td>
+                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                    ${order.total}
+                  </td>
+                  <td className='px-6 py-4 whitespace-nowrap'>
+                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
+                      {status[order?.status]}
+                    </span>
+                  </td>
+                </tr>
+              </Link>
             ))}
           </tbody>
         </table>
