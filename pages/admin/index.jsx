@@ -23,6 +23,7 @@ const Login = () => {
         push("/admin/profile");
       }
     } catch (error) {
+      toast.error("username or password is incorrect");
       console.log(error);
     }
     actions.resetForm();
