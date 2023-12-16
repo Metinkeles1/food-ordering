@@ -38,7 +38,6 @@ const Search = ({ setIsSearchModal }) => {
       .slice(0, 5);
     setFiltered(searchFilter);
   };
-  console.log(filtered);
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 after:content-[''] after:w-screen after:h-screen after:opacity-50 after:bg-white after:absolute after:top-0 after:left-0 grid place-content-center">
