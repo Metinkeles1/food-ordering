@@ -55,57 +55,63 @@ const Cart = ({ userList }) => {
     <div className='min-h-[calc(100vh_-_433px)]'>
       <div className='flex justify-between items-center md:flex-row flex-col'>
         <div className='min-h-[calc(100vh_-_433px)] flex items-center flex-1 p-10 overflow-x-auto w-full'>
-          <table className='w-full text-sm text-center text-gray-secondary min-w-[1000px]'>
-            <thead className='text-xs text-gray-200 uppercase bg-gray-700'>
-              <tr>
-                <th scope='col' className='py-3 px-6'>
-                  PRODUCT
-                </th>
-                <th scope='col' className='py-3 px-6'>
-                  EXTRAS
-                </th>
-                <th scope='col' className='py-3 px-6'>
-                  PRICE
-                </th>
-                <th scope='col' className='py-3 px-6'>
-                  QUANTITY
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.products.map((product) => (
-                <tr
-                  key={product?.food?._id}
-                  className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
-                >
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-normal'>
-                    <Image
-                      src={product?.food?.img}
-                      alt=''
-                      width='50'
-                      height='50'
-                    />
-                    <span>{product?.food?.title}</span>
-                  </td>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    {product.extras.length > 0 ? (
-                      product.extras.map((item) => (
-                        <span key={item._id}>{item.text},</span>
-                      ))
-                    ) : (
-                      <span>Empty</span>
-                    )}
-                  </td>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    ${product.price}
-                  </td>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    {product.quantity}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className='max-h-80 overflow-auto w-full'>
+            {cart?.products?.length > 0 ? (
+              <table className='w-full text-sm text-center text-gray-secondary min-w-[1000px]'>
+                <thead className='text-xs text-gray-200 uppercase bg-gray-700'>
+                  <tr>
+                    <th scope='col' className='py-3 px-6'>
+                      PRODUCT
+                    </th>
+                    <th scope='col' className='py-3 px-6'>
+                      EXTRAS
+                    </th>
+                    <th scope='col' className='py-3 px-6'>
+                      PRICE
+                    </th>
+                    <th scope='col' className='py-3 px-6'>
+                      QUANTITY
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.products.map((product) => (
+                    <tr
+                      key={product?.food?._id}
+                      className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
+                    >
+                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-normal'>
+                        <Image
+                          src={product?.food?.img}
+                          alt=''
+                          width='50'
+                          height='50'
+                        />
+                        <span>{product?.food?.title}</span>
+                      </td>
+                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                        {product.extras.length > 0 ? (
+                          product.extras.map((item) => (
+                            <span key={item._id}>{item.text},</span>
+                          ))
+                        ) : (
+                          <span>Empty</span>
+                        )}
+                      </td>
+                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                        ${product.price}
+                      </td>
+                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                        {product.quantity}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className='text-center font-semibold'>Sepetiniz Boş</p>
+            )}
+          </div>
         </div>
         <div className='bg-secondary min-h-[calc(100vh_-_433px)] flex flex-col justify-center p-12 md:w-auto w-full md:text-start text-center'>
           <Title addClass='text-[40px]'>CART TOTAL</Title>
