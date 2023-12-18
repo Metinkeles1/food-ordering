@@ -48,7 +48,7 @@ const Footer = () => {
                 <a
                   key={social._id}
                   href={social.link}
-                  className='w-8 h-8 grid place-content-center bg-white text-secondary rounded-full '
+                  className='hover:text-white hover:bg-primary transition-all w-8 h-8 grid place-content-center bg-white text-secondary rounded-full '
                   rel='noreferrer'
                 >
                   <i className='fa fa-facebook'></i>

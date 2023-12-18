@@ -51,7 +51,7 @@ const Profile = ({ user }) => {
           </li>
           <li
             onClick={() => setTabs(1)}
-            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
+            className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
               tabs === 1 && "bg-primary text-white"
             }`}
           >
@@ -60,7 +60,7 @@ const Profile = ({ user }) => {
           </li>
           <li
             onClick={() => setTabs(2)}
-            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
+            className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
               tabs === 2 && "bg-primary text-white"
             }`}
           >
@@ -68,7 +68,7 @@ const Profile = ({ user }) => {
             <button className='ml-1'>Orders</button>
           </li>
           <li
-            className={`border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center `}
+            className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center `}
             onClick={handleSignOut}
           >
             <FaSignOutAlt />
