@@ -4,7 +4,7 @@ import { RiEBike2Fill } from "react-icons/ri";
 import { BiSolidCategory } from "react-icons/bi";
 import { useState } from "react";
 import Products from "../../components/admin/Products";
-import Order from "../../components/admin/Order";
+import Order from "../../components/admin/order/Order";
 import Category from "../../components/admin/Category";
 import AddProduct from "../../components/admin/AddProduct";
 import Footer from "../../components/admin/Footer";

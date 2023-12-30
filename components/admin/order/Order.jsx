@@ -1,9 +1,13 @@
-import Title from "../ui/Title";
+import Title from "../../ui/Title";
+import OrderDetail from "./OrderDetail";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Order = () => {
+  const [isOrderModal, setIsOrderModal] = useState(false);
   const [data, setData] = useState([]);
+  const [order, setOrder] = useState([]);
   const status = ["preparing", "On the way", "delivered"];
 
   useEffect(() => {
@@ -40,12 +44,12 @@ const Order = () => {
   return (
     <div className='flex-1 lg:p-8 lg:mt-0 mt-5'>
       <Title addClass='text-[40px] mb-4'>Orders</Title>
-      <div className='overflow-x-auto w-full mt-5'>
+      <div className='overflow-x-auto max-h-[500px] w-full mt-5'>
         <table className='w-full text-sm text-center text-gray-secondary xl:min-w-[1000px] '>
           <thead className='text-xs text-gray-200 uppercase bg-gray-700 '>
             <tr>
               <th scope='col' className='py-3 px-6'>
-                PRODUCT ID
+                ORDER ID
               </th>
               <th scope='col' className='py-3 px-6'>
                 CUSTOMER
@@ -70,6 +74,7 @@ const Order = () => {
                 .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                 .map((order) => (
                   <tr
+                    onClick={() => setIsOrderModal(true)}
                     key={order._id}
                     className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
                   >
@@ -92,17 +97,19 @@ const Order = () => {
                     </td>
                     <td className='px-6 py-4 whitespace-nowrap'>
                       <button
-                        className='btn-primary !bg-success'
-                        onClick={() => handleStatus(order?._id)}
-                        disabled={order?.status > 1}
+                        className='btn-primary !bg-success ml-2'
+                        onClick={() => setOrder(order)}
                       >
-                        Next Stage
+                        View Details
                       </button>
                     </td>
                   </tr>
                 ))}
           </tbody>
         </table>
+        {isOrderModal && (
+          <OrderDetail setIsOrderModal={setIsOrderModal} order={order} />
+        )}
       </div>
     </div>
   );
