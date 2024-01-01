@@ -26,6 +26,31 @@ const OrderSchema = new mongoose.Schema(
         },
         method:{
             type: Number,
+        },
+        products: {
+            type:[
+                {                    
+                    productId: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'Product',
+                        required: true,
+                    },
+                    productPrice:{
+                        type: Number,
+                    },
+                    productSize:{
+                        type: String,
+                    },
+                    extraOptions:{
+                        type:[
+                            {
+                                text:{type: String},
+                                price: {type: Number}
+                            }
+                        ],
+                    }
+                }
+            ]
         }
     } ,
     { timestamps: true }
