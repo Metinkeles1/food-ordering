@@ -41,6 +41,11 @@ const Order = () => {
     }
   };
 
+  const handleViewDetails = (order) => {
+    setOrder(order);
+    setIsOrderModal(true);
+  };
+
   return (
     <div className='flex-1 lg:p-8 lg:mt-0 mt-5'>
       <Title addClass='text-[40px] mb-4'>Orders</Title>
@@ -74,7 +79,6 @@ const Order = () => {
                 .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                 .map((order) => (
                   <tr
-                    onClick={() => setIsOrderModal(true)}
                     key={order._id}
                     className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
                   >
@@ -97,10 +101,17 @@ const Order = () => {
                     </td>
                     <td className='px-6 py-4 whitespace-nowrap'>
                       <button
-                        className='btn-primary !bg-success ml-2'
-                        onClick={() => setOrder(order)}
+                        className='btn-primary !bg-secondary mr-2'
+                        onClick={() => handleViewDetails(order)}
                       >
                         View Details
+                      </button>
+                      <button
+                        className='btn-primary !bg-success'
+                        onClick={() => handleStatus(order?._id)}
+                        disabled={order?.status > 1}
+                      >
+                        Next Stage
                       </button>
                     </td>
                   </tr>
