@@ -40,7 +40,7 @@ const Index = ({ food }) => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ food, extras, price, quantity: 1 }));
+    dispatch(addProduct({ food, extras, price, size: size, quantity: 1 }));
     toast.success("Added to cart", {
       autoClose: 1000,
     });
