@@ -6,9 +6,11 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const Cart = ({ userList }) => {
   const { data: session } = useSession();
+  const productSizes = ["Small", "Medium", "Large"];
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const user = userList?.find((user) => user.email === session?.user?.email);
@@ -20,9 +22,15 @@ const Cart = ({ userList }) => {
     address: user?.address ? user?.address : "No address",
     total: cart.total,
     method: 0,
+    products: cart.products.map((cartItem) => ({
+      productId: cartItem.food._id,
+      productPrice: cartItem.price,
+      productSize: cartItem.size,
+      extraOptions: cartItem.extras || [],
+    })),
   };
 
-  // console.log(cart.products[0].food.extraOptions);
+  console.log(typeof cart?.products[0]?.size);
 
   const createOrder = async () => {
     try {
@@ -64,6 +72,9 @@ const Cart = ({ userList }) => {
                       PRODUCT
                     </th>
                     <th scope='col' className='py-3 px-6'>
+                      PRODUCT SIZE
+                    </th>
+                    <th scope='col' className='py-3 px-6'>
                       EXTRAS
                     </th>
                     <th scope='col' className='py-3 px-6'>
@@ -80,7 +91,7 @@ const Cart = ({ userList }) => {
                       key={product?.food?._id}
                       className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
                     >
-                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-normal'>
+                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
                         <Image
                           src={product?.food?.img}
                           alt=''
@@ -90,9 +101,12 @@ const Cart = ({ userList }) => {
                         <span>{product?.food?.title}</span>
                       </td>
                       <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                        {product.extras.length > 0 ? (
-                          product.extras.map((item) => (
-                            <span key={item._id}>{item.text},</span>
+                        {productSizes[product?.size]}
+                      </td>
+                      <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
+                        {product?.extras?.length > 0 ? (
+                          product?.extras?.map((item, index) => (
+                            <span key={index}>{item.text},</span>
                           ))
                         ) : (
                           <span>Empty</span>
@@ -113,7 +127,7 @@ const Cart = ({ userList }) => {
             )}
           </div>
         </div>
-        <div className='bg-secondary min-h-[calc(100vh_-_433px)] flex flex-col justify-center p-12 md:w-auto w-full md:text-start text-center'>
+        <div className='bg-secondary text-white min-h-[calc(100vh_-_433px)] flex flex-col justify-center p-12 md:w-auto w-full md:text-start text-center'>
           <Title addClass='text-[40px]'>CART TOTAL</Title>
           <div className='mt-6'>
             <b>Subtotal: </b>${cart.total} <br />
