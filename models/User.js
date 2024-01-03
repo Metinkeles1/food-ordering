@@ -15,13 +15,7 @@ const UserSchema = new mongoose.Schema(
         },
         address: {
             type: String
-        },
-        job: {
-            type: String
-        },
-        bio: {
-            type: String
-        },
+        },      
         password: {
             type: String,
             required: true,
