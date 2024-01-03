@@ -27,8 +27,6 @@ const Account = ({ user }) => {
         phoneNumber: user?.phoneNumber,
         email: user?.email,
         address: user?.address,
-        job: user?.job,
-        bio: user?.bio,
       },
       onSubmit,
       validationSchema: profileSchema,
@@ -69,24 +67,6 @@ const Account = ({ user }) => {
       value: values.address,
       errorMessage: errors.address,
       touched: touched.address,
-    },
-    {
-      id: 5,
-      name: "job",
-      type: "text",
-      placeholder: "Your Job",
-      value: values.job,
-      errorMessage: errors.job,
-      touched: touched.job,
-    },
-    {
-      id: 6,
-      name: "bio",
-      type: "text",
-      placeholder: "Your Bio",
-      value: values.bio,
-      errorMessage: errors.bio,
-      touched: touched.bio,
     },
   ];
   return (
