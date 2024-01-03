@@ -4,10 +4,13 @@ import Title from "../ui/Title";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const Order = () => {
   const [data, setData] = useState([]);
   const status = ["preparing", "On the way", "delivered"];
+  const productSizes = ["Small", "Medium", "Large"];
+  const [productsData, setProductsData] = useState([]);
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -16,9 +19,32 @@ const Order = () => {
         const res = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/orders`
         );
-        setData(
-          res?.data.filter((order) => order.email === session.user.email)
-        );
+
+        const sortedOrders = res?.data
+          .filter((order) => order.email === session.user.email)
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        setData(sortedOrders);
+
+        const productsPromises = sortedOrders.map(async (order) => {
+          const products = await Promise.all(
+            order.products.map(async (product) => {
+              const productRes = await axios.get(
+                `${process.env.NEXT_PUBLIC_API_URL}/products/${product.productId}`
+              );
+              return {
+                ...productRes.data,
+                price: product.productPrice,
+                size: product.productSize,
+                extras: product.extraOptions,
+              };
+            })
+          );
+          return { ...order, products };
+        });
+
+        const sortedProductsData = await Promise.all(productsPromises);
+        setProductsData(sortedProductsData);
       } catch (error) {
         console.log(error);
       }
@@ -26,57 +52,138 @@ const Order = () => {
     getOrders();
   }, [session]);
 
+  console.log(productsData);
+
+  const activeOrders = productsData.filter((order) => order.status <= 1);
+  const previousOrders = productsData.filter((order) => order.status > 1);
+
   return (
     <div className='flex-1 lg:p-8 lg:mt-0 mt-5'>
-      <Title addClass='text-[40px] mb-4'>Orders</Title>
-      <div className='overflow-x-auto w-full mt-5'>
-        <table className='w-full text-sm text-center text-gray-secondary xl:min-w-[1000px] min-w-100% '>
-          <thead className='text-xs text-gray-200 uppercase bg-gray-700 '>
-            <tr>
-              <th scope='col' className='py-3 px-6'>
-                ID
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                ADDRESS
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                DATE
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                TOTAL
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                STATUS
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((order) => (
-              <Link key={order._id} href={`/order/${order._id}`}>
-                <tr className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
-                    <span>{order._id.substring(0, 6)}...</span>
-                  </td>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    <span>{order.address}</span>
-                  </td>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    {order.createdAt}
-                  </td>
-                  <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary'>
-                    ${order.total}
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                      {status[order?.status]}
-                    </span>
-                  </td>
-                </tr>
-              </Link>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {productsData.length > 0 ? (
+        <div>
+          <div>
+            <Title addClass='text-[40px]'>Active Orders</Title>
+            {activeOrders.length > 0 ? (
+              <div className='overflow-x-auto overflow-y-auto w-full  '>
+                {activeOrders.map((order, index) => (
+                  <Link key={order._id} href={`/order/${order._id}`}>
+                    <div
+                      key={index}
+                      className='bg-white p-4 shadow-md my-4 rounded-md cursor-pointer hover:bg-primary transition-all'
+                    >
+                      <div className='flex flex-row md:flex-row items-center'>
+                        <div
+                          className='md:w-24 md:h-24 w-16 h-16 bg-cover bg-center mr-4 mb-4 md:mb-0'
+                          style={{
+                            backgroundImage: `url(${order.products[0].img})`,
+                          }}
+                        ></div>
+                        <div className='flex-1'>
+                          <div className='flex items-center justify-between  mb-2'>
+                            <div
+                              className='sm:text-lg text-sm font-bold '
+                              style={{ textTransform: "capitalize" }}
+                            >
+                              {order?.products[0]?.category}
+                            </div>
+                            <div className='text-lg font-bold '>
+                              ${order.total}
+                            </div>
+                          </div>
+                          <div className='flex flex-col'>
+                            <div className='text-gray-500 text-sm mb-2 md:mb-0 md:mr-2'>
+                              {new Date(order?.createdAt).toLocaleString()} it
+                              was delivered.
+                            </div>
+                            <div className='text-gray-500 text-sm mt-1'>
+                              Order {order?._id.substring(0, 6)}...
+                            </div>
+                          </div>
+                          <div className='mt-4 flex flex-col'>
+                            {order.products.map((item, productIndex) => (
+                              <div
+                                key={productIndex}
+                                className='text-sm font-semibold mt-1'
+                              >
+                                1X {item.title} {productSizes[item.size]}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className='mt-4 text-gray-500'>No active orders</div>
+            )}
+          </div>
+
+          <div>
+            <Title addClass='text-[40px] '>Previous Orders</Title>
+            {previousOrders.length > 0 ? (
+              <div className='overflow-x-auto overflow-y-auto w-full h-[500px] '>
+                {previousOrders.map((order, index) => (
+                  <Link key={order._id} href={`/order/${order._id}`}>
+                    <div
+                      key={index}
+                      className='bg-white p-4 shadow-md my-4 rounded-md cursor-pointer hover:bg-primary transition-all'
+                    >
+                      <div className='flex flex-row md:flex-row items-center'>
+                        <div
+                          className='md:w-24 md:h-24 w-16 h-16 bg-cover bg-center mr-4 mb-4 md:mb-0'
+                          style={{
+                            backgroundImage: `url(${order.products[0].img})`,
+                          }}
+                        ></div>
+                        <div className='flex-1'>
+                          <div className='flex items-center justify-between  mb-2'>
+                            <div
+                              className='sm:text-lg text-sm font-bold '
+                              style={{ textTransform: "capitalize" }}
+                            >
+                              {order?.products[0]?.category}
+                            </div>
+                            <div className='text-lg font-bold '>
+                              ${order.total}
+                            </div>
+                          </div>
+                          <div className='flex flex-col'>
+                            <div className='text-gray-500 text-sm mb-2 md:mb-0 md:mr-2'>
+                              {new Date(order?.createdAt).toLocaleString()} it
+                              was delivered.
+                            </div>
+                            <div className='text-gray-500 text-sm mt-1'>
+                              Order {order?._id.substring(0, 6)}...
+                            </div>
+                          </div>
+                          <div className='mt-4 flex flex-col'>
+                            {order.products.map((item, productIndex) => (
+                              <div
+                                key={productIndex}
+                                className='text-sm font-semibold mt-1'
+                              >
+                                1X {item.title} {productSizes[item.size]}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className='mt-4 text-gray-500'>No previous orders</div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className='flex justify-center mt-4'>
+          <PacmanLoader color='#fca311' />
+        </div>
+      )}
     </div>
   );
 };
