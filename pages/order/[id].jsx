@@ -40,17 +40,13 @@ const Index = ({ order }) => {
     };
 
     getOrders();
-    console.log(productsData);
-    console.log(order);
   }, [order]);
 
   return (
-    <div className='overflow-x-auto'>
+    <div className='overflow-x-auto max-w-6xl mx-auto'>
       <div className='min-h-[calc(100vh_-_433px)] flex justify-center items-center flex-col p-10 min-w-full'>
-        <Title addClass='absolute top-24 left-10 text-[40px]'>
-          Order Detail
-        </Title>
-        <div className='flex sm:flex-row flex-col items-center flex-1 w-full gap-x-4 mt-8'>
+        <Title addClass=' text-[40px]'>Order Detail</Title>
+        <div className='flex sm:flex-row flex-col items-center flex-1 w-full gap-x-4 mt-4'>
           <div className='bg-white border p-4 rounded-md shadow-md w-full'>
             {productsData?.map((item, index) => (
               <div key={index} className='flex items-center mb-4'>
@@ -117,7 +113,7 @@ const Index = ({ order }) => {
             </div>
           </div>
 
-          <div className='bg-white border p-4 rounded-md shadow-md w-full'>
+          <div className='bg-white border p-4 rounded-md shadow-md w-full mt-4'>
             <div className='flex items-center mb-4'>
               <div className='w-full'>
                 <a className='text-primary font-bold text-lg'>Order Summary</a>
