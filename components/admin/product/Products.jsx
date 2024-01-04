@@ -1,11 +1,15 @@
 import Image from "next/image";
-import Title from "../ui/Title";
+import Title from "../../ui/Title";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Link from "next/link";
+import UpdateProduct from "./UpdateProduct";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [isProductModal, setIsProductModal] = useState(false);
+  const [product, setProduct] = useState();
 
   const handleDelete = async (id) => {
     try {
@@ -33,6 +37,16 @@ const Products = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleUpdate = (product) => {
+    setProduct(product);
+    setIsProductModal(true);
+  };
+
+  const handleUpdateSuccess = () => {
+    getProducts();
+    setIsProductModal(false);
   };
 
   useEffect(() => {
@@ -67,8 +81,8 @@ const Products = () => {
             {products.length > 0 &&
               products.map((product) => (
                 <tr
-                  className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
                   key={product._id}
+                  className='border-b bg-[#fff] border-gray-700 hover:bg-primary hover:text-[#fff] transition-all'
                 >
                   <td className='py-4 px-6 font-medium whitespace-nowrap hover:text-secondary flex items-center gap-x-2 justify-center'>
                     <Image
@@ -89,16 +103,29 @@ const Products = () => {
                   </td>
                   <td className='px-6 py-4 whitespace-nowrap'>
                     <button
-                      className='btn-primary !bg-danger'
+                      className='btn-primary !bg-danger mr-2'
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete
+                    </button>
+                    <button
+                      className='btn-primary !bg-secondary'
+                      onClick={() => handleUpdate(product)}
+                    >
+                      Update
                     </button>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
+        {isProductModal && (
+          <UpdateProduct
+            setIsProductModal={setIsProductModal}
+            product={product}
+            onUpdateSuccess={handleUpdateSuccess}
+          />
+        )}
       </div>
     </div>
   );
