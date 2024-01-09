@@ -32,7 +32,7 @@ const MenuItem = ({ product }) => {
       </div>
       <div className='p-[25px] text-white'>
         <h4 className='text-xl font-semibold'>{product.title}</h4>
-        <p className='text-[15px]'>{product.desc.substring(0, 150)}...</p>
+        <p className='text-[15px] h-20'>{product.desc.substring(0, 150)}...</p>
         <div className='flex justify-between items-center mt-3'>
           <span>${product.prices[0]}</span>
           <button

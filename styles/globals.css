@@ -30,5 +30,5 @@ body {
 }
 
 .slick-dots div {
-  @apply !m-0 !mt-20;
+  @apply !m-0 sm:!mt-20 !mt-10;
 }

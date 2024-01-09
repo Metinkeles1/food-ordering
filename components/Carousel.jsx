@@ -19,7 +19,7 @@ const Carousel = () => {
     ),
     customPaging: (i, currentSlide) => (
       <div
-        className={`w-3 h-3 rounded-full mt-10 ${
+        className={`w-3 h-3 rounded-full ${
           i === currentSlide ? "bg-primary" : "bg-gray-300"
         }`}
       ></div>
@@ -40,7 +40,7 @@ const Carousel = () => {
       </div>
       <Slider {...settings}>
         <div>
-          <div className='container mx-auto mt-52 top-48 text-white flex flex-col items-start gap-y-10'>
+          <div className='container mx-auto sm:mt-52 sm:top-48 mt-20 top-20 text-white flex flex-col items-start gap-y-10'>
             <Title addClass='text-6xl'>Fast Food Restaurant</Title>
             <p className='text-sm sm:w-full md:w-3/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2 '>
               Doloremque, itaque aperiam facilis rerum, commodi, temporibus
@@ -52,7 +52,7 @@ const Carousel = () => {
           </div>
         </div>
         <div>
-          <div className='container mx-auto mt-52 top-48 text-white flex flex-col items-start gap-y-10'>
+          <div className='container mx-auto sm:mt-52 sm:top-48 mt-20 top-20 text-white flex flex-col items-start gap-y-10'>
             <Title addClass='text-6xl'>Fast Food Restaurant</Title>
             <p className='text-sm sm:w-full md:w-3/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2 '>
               Doloremque, itaque aperiam facilis rerum, commodi, temporibus
