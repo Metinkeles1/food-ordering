@@ -1,41 +1,65 @@
+// components/Campaigns.js
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Title from "./ui/Title";
 import { MdShoppingCart } from "react-icons/md";
+import axios from "axios";
+import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
 
-const CampaignItem = () => {
+const CampaignItem = ({ campaignItem }) => {
+  const campaignPrice = () => {
+    return (
+      campaignItem?.prices[0] -
+      (campaignItem.campaign.discount / 100) * campaignItem?.prices[0]
+    );
+  };
+
   return (
     <div className='bg-secondary flex-1 rounded-md py-5 px-[15px] flex items-center gap-x-5'>
-      <div className="relative md:w-44 md:h-44 w-36 h-36 after:content-['']  border-[5px] border-primary rounded-full overflow-hidden">
+      <div className="relative md:w-44 md:h-44 w-36 h-36 after:content-[''] border-[5px] border-primary rounded-full overflow-hidden">
         <Image
-          src='/images/o1.jpg'
-          alt=''
+          src={campaignItem.img}
+          alt={campaignItem.title}
           layout='fill'
           objectFit='cover'
           className='hover:scale-105 transition-all'
           priority
         />
       </div>
-      <div className='text-white'>
-        <Title addClass='text-2xl'>Tasty Thursdays</Title>
-        <div className=' font-dancing my-1'>
-          <span className='text-[40px]'>20% </span>
-          <span className='text-sm'>Off</span>
+      <div className='text-white flex-1'>
+        <Title addClass='text-3xl'>{campaignItem.title}</Title>
+        <div className='flex justify-between font-dancing my-1'>
+          <div className='my-1'>
+            <span className='sm:text-4xl text-2xl '>
+              %{campaignItem.campaign.discount}{" "}
+            </span>
+            <span className='text-sm'>Off</span>
+          </div>
+          <div>
+            <span className='text-md line-through mr-2'>
+              ${campaignItem.prices[0]}
+            </span>
+            <span className='sm:text-4xl text-2xl'>${campaignPrice()}</span>
+          </div>
         </div>
-        <button className='btn-primary flex items-center gap-x-2 mt-2'>
-          <MdShoppingCart size={20} /> Order Now
-        </button>
+        <Link href={`/product/${campaignItem._id}`}>
+          <button className='btn-primary flex items-center gap-x-2 mt-2'>
+            <MdShoppingCart size={20} /> Order Now
+          </button>
+        </Link>
       </div>
     </div>
   );
 };
 
-const Campaigns = () => {
+const Campaigns = ({ campaignList }) => {
   return (
     <div className='flex container mx-auto py-20 gap-6 flex-wrap'>
-      <CampaignItem />
-      <CampaignItem />
+      {campaignList.map((campaign) => (
+        <CampaignItem key={campaign._id} campaignItem={campaign} />
+      ))}
     </div>
   );
 };
-
 export default Campaigns;
