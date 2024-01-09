@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Title from "../../components/ui/Title";
 import { addProduct } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Index = ({ food }) => {
+  const campaignPrice = food.campaign
+    ? food.prices[0] - (food.campaign.discount / 100) * food.prices[0]
+    : null;
+
+  console.log(food);
   const [prices, setPrices] = useState(food.prices);
-  const [price, setPrice] = useState(prices[0]);
+  const [price, setPrice] = useState(food.campaign ? campaignPrice : prices[0]);
   const [size, setSize] = useState(0);
   const [extraItems, setExtraItems] = useState(food?.extraOptions);
   const [extras, setExtras] = useState([]);
@@ -54,7 +59,7 @@ const Index = ({ food }) => {
       <div className='md:flex-1 md:text-start text-center'>
         <Title addClass='text-6xl'>{food?.title}</Title>
         <span className='text-primary text-2xl font-bold underline underline-offset-1 my-4 inline-block'>
-          ${price}
+          ${campaignPrice ? campaignPrice : price}
         </span>
         <p className='text-sm my-4 md:pr-24'>{food?.desc}</p>
         {food.category === "pizza" && (
@@ -116,15 +121,24 @@ const Index = ({ food }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`
-  );
+  try {
+    const [foodRes, campaignRes] = await Promise.all([
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`),
+      axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/products/campaigns/${params.id}`
+      ),
+    ]);
+    const food = campaignRes.data ? campaignRes.data : foodRes.data;
 
-  return {
-    props: {
-      food: res.data ? res.data : null,
-    },
-  };
+    return {
+      props: { food },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: { food: null, campaign: null },
+    };
+  }
 };
 
 export default Index;

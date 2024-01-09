@@ -7,34 +7,39 @@ const ProductSchema = new mongoose.Schema(
             required: true,
             maxlength: 60
         },
-        desc:{
+        desc: {
             type: String,
             required: true,
             maxlength: 300
         },
-        prices:{
-            type:[Number],
+        prices: {
+            type: [Number],
             required: true
         },
-        category:{
+        category: {
             type: String,
             required: true
         },
-        img:{
+        img: {
             type: String,
             required: true
         },
-        extraOptions:{
-            type:[
+        extraOptions: {
+            type: [
                 {
-                    text:{type: String},
-                    price: {type: Number}
+                    text: { type: String },
+                    price: { type: Number }
                 }
             ]
+        },
+        campaign: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Campaign'
         }
-
-    } ,
+    },
     { timestamps: true }
-)
+);
 
-export default mongoose.models.Product || mongoose.model("Product", ProductSchema);
+const Product = mongoose.models.Product || mongoose.model('Product', ProductSchema);
+
+export default Product;
