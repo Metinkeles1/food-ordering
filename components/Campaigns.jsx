@@ -16,7 +16,7 @@ const CampaignItem = ({ campaignItem }) => {
   };
 
   return (
-    <div className='bg-secondary flex-1 rounded-md py-5 px-[15px] flex items-center gap-x-5'>
+    <div className='bg-secondary flex-1 max-w-[560px] rounded-md py-5 px-[15px] flex items-center gap-x-5 '>
       <div className="relative md:w-44 md:h-44 w-36 h-36 after:content-[''] border-[5px] border-primary rounded-full overflow-hidden">
         <Image
           src={campaignItem.img}
@@ -54,9 +54,21 @@ const CampaignItem = ({ campaignItem }) => {
 };
 
 const Campaigns = ({ campaignList }) => {
+  const productsWithValidCampaigns = campaignList.filter((product) => {
+    const currentDate = new Date().toISOString();
+    const campaignStartDate = product.campaign.startDate;
+    const campaignEndDate = product.campaign.endDate;
+    return (
+      product.campaign &&
+      product.campaign._id !== "65a0244adff44cb1cb1e72b7" &&
+      currentDate >= campaignStartDate &&
+      currentDate <= campaignEndDate
+    );
+  });
+
   return (
     <div className='flex container mx-auto py-20 gap-6 flex-wrap'>
-      {campaignList.map((campaign) => (
+      {productsWithValidCampaigns.map((campaign) => (
         <CampaignItem key={campaign._id} campaignItem={campaign} />
       ))}
     </div>
