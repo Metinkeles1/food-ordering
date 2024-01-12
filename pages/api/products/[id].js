@@ -1,6 +1,5 @@
-import Product from "../../../models/Product"; // User modelini çağır
+import Product from "../../../models/Product";
 import dbConnect from "../../../util/dbConnect";
-import bcrypt from "bcryptjs";
 
 const handler = async (req, res) => {
   await dbConnect();
@@ -15,6 +14,7 @@ const handler = async (req, res) => {
       res.status(200).json(product);
     } catch (err) {
       console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 
@@ -35,6 +35,7 @@ const handler = async (req, res) => {
       res.status(200).json(product);
     } catch (err) {
       console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 };
