@@ -14,9 +14,13 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
   const [prices, setPrices] = useState(product.prices || []);
   const [extraOptions, setExtraOptions] = useState(product.extraOptions || []);
 
-  const [category, setCategory] = useState("pizza");
+  const [category, setCategory] = useState(product.category);
   const [extra, setExtra] = useState({ text: "", price: "" });
   const [categories, setCategories] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);
+  const [selectedCampaignId, setSelectedCampaignId] = useState(
+    product.campaign || ""
+  );
 
   useEffect(() => {
     const getCategories = async () => {
@@ -29,7 +33,20 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
         console.log(err);
       }
     };
+
+    const getCampaigns = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/campaigns`
+        );
+        setCampaigns(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getCategories();
+    getCampaigns();
   }, []);
 
   const handleExtra = () => {
@@ -79,7 +96,9 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
         category: category.toLowerCase(),
         prices,
         extraOptions,
+        campaign: selectedCampaignId, // Boş veya seçilen kampanya değeri
       };
+
       const res = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/products/${product._id}`,
         updateProduct
@@ -90,8 +109,14 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
         onUpdateSuccess();
         toast.success("Product updated successfully!");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error(
+        "MongoDB Update Error:",
+        error.response?.data || error.message
+      );
+
+      // Hatayı inceleme amaçlı
+      throw error;
     }
   };
 
@@ -161,6 +186,21 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
               </select>
             </div>
 
+            <div className='flex flex-col text-sm mt-4'>
+              <span className='font-semibold mb-[2px]'>Select Campaign</span>
+              <select
+                className='border-2 p-1 text-sm px-1 outline-none'
+                value={selectedCampaignId}
+                onChange={(e) => setSelectedCampaignId(e.target.value)}
+              >
+                {campaigns.map((campaign) => (
+                  <option value={campaign._id} key={campaign._id}>
+                    {campaign.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className='flex flex-col text-sm mt-4 w-full'>
               <span className='font-semibold mb-[2px]'>Prices</span>
               {category === "pizza" ? (
@@ -199,6 +239,7 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
                 </div>
               )}
             </div>
+
             <div className='flex flex-col text-sm mt-4 w-full'>
               <span className='font-semibold mb-[2px]'>Extra</span>
               <div className='flex  gap-6 w-full md:flex-nowrap flex-wrap'>
