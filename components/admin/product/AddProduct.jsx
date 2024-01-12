@@ -14,10 +14,12 @@ const AddProduct = ({ setIsProductModal }) => {
   const [category, setCategory] = useState("pizza");
   const [prices, setPrices] = useState([]);
 
-  const [extra, setExtra] = useState("");
+  const [extra, setExtra] = useState({ text: "", price: "" });
   const [extraOptions, setExtraOptions] = useState([]);
 
   const [categories, setCategories] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);
+  const [selectedCampaignId, setSelectedCampaignId] = useState("");
 
   useEffect(() => {
     const getProducts = async () => {
@@ -25,7 +27,12 @@ const AddProduct = ({ setIsProductModal }) => {
         const res = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/categories`
         );
+
+        const campaignRes = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/campaigns`
+        );
         setCategories(res.data);
+        setCampaigns(campaignRes.data);
       } catch (err) {
         console.log(err);
       }
@@ -33,11 +40,11 @@ const AddProduct = ({ setIsProductModal }) => {
     getProducts();
   }, []);
 
-  const handleExtra = (e) => {
-    if (extra) {
-      if (extra.text && extra.price) {
-        setExtraOptions((prev) => [...prev, extra]);
-      }
+  const handleExtra = () => {
+    if (extra.text && extra.price) {
+      setExtraOptions((prev) => [...prev, extra]);
+    } else {
+      console.log("Please enter both item and price for Extra.");
     }
   };
 
@@ -53,7 +60,7 @@ const AddProduct = ({ setIsProductModal }) => {
   };
 
   const changePrice = (e, index) => {
-    const currentPrices = prices;
+    const currentPrices = [...prices];
     currentPrices[index] = e.target.value;
     setPrices(currentPrices);
   };
@@ -77,6 +84,7 @@ const AddProduct = ({ setIsProductModal }) => {
         category: category.toLowerCase(),
         prices,
         extraOptions,
+        campaign: selectedCampaignId,
       };
 
       const res = await axios.post(
@@ -156,6 +164,21 @@ const AddProduct = ({ setIsProductModal }) => {
                       {category.title}
                     </option>
                   ))}
+              </select>
+            </div>
+
+            <div className='flex flex-col text-sm mt-4'>
+              <span className='font-semibold mb-[2px]'>Select Campaign</span>
+              <select
+                className='border-2 p-1 text-sm px-1 outline-none'
+                value={selectedCampaignId}
+                onChange={(e) => setSelectedCampaignId(e.target.value)}
+              >
+                {campaigns.map((campaign) => (
+                  <option value={campaign._id} key={campaign._id}>
+                    {campaign.title}
+                  </option>
+                ))}
               </select>
             </div>
 
