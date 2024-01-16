@@ -5,11 +5,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import UpdateProduct from "./UpdateProduct";
+import AddProduct from "../product/AddProduct";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [isProductModal, setIsProductModal] = useState(false);
   const [product, setProduct] = useState();
+  const [isCreateProductModal, setIsCreateProductModal] = useState(false);
 
   const handleDelete = async (id) => {
     try {
@@ -56,7 +58,7 @@ const Products = () => {
   return (
     <div className='flex-1 lg:p-8 lg:mt-0 mt-5'>
       <Title addClass='text-[40px] mb-4'>Products</Title>
-      <div className='overflow-x-auto  max-h-[300px] w-full mt-5'>
+      <div className='overflow-x-auto  max-h-[350px] w-full mt-5'>
         <table className='w-full text-sm text-center text-gray-secondary xl:min-w-[1000px] '>
           <thead className='text-xs text-gray-200 uppercase bg-gray-700 '>
             <tr>
@@ -119,12 +121,22 @@ const Products = () => {
               ))}
           </tbody>
         </table>
+        <button
+          onClick={() => setIsCreateProductModal(true)}
+          className='btn-primary !w-12 !h-12 !p-0 absolute right-5 top-28 text-4xl'
+        >
+          +
+        </button>
+
         {isProductModal && (
           <UpdateProduct
             setIsProductModal={setIsProductModal}
             product={product}
             onUpdateSuccess={handleUpdateSuccess}
           />
+        )}
+        {isCreateProductModal && (
+          <AddProduct setIsCreateProductModal={setIsCreateProductModal} />
         )}
       </div>
     </div>
