@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { FaWindowMaximize, FaSignOutAlt } from "react-icons/fa";
+import { FaBullhorn, FaWindowMaximize, FaSignOutAlt } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { BiSolidCategory } from "react-icons/bi";
+import { IoIosMegaphone } from "react-icons/io";
 import { useState } from "react";
 import Products from "../../components/admin/product/Products";
 import Order from "../../components/admin/order/Order";
+import Campaign from "../../components/admin/campaign/Campaign";
 import Category from "../../components/admin/Category";
 import AddProduct from "../../components/admin/product/AddProduct";
 import Footer from "../../components/admin/Footer";
@@ -14,7 +16,6 @@ import { toast } from "react-toastify";
 
 const Profile = () => {
   const [tabs, setTabs] = useState(0);
-  const [isProductModal, setIsProductModal] = useState(false);
 
   const { push } = useRouter();
 
@@ -33,7 +34,7 @@ const Profile = () => {
   };
 
   return (
-    <div className='flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col lg:mb-0 mb-10 '>
+    <div className='flex px-10 min-h-[calc(100vh_-_433px)] lg:flex-row flex-col  mb-10 '>
       <div className='lg:w-80 w-100 flex-shrink-0 mt-8'>
         <div className='relative border border-b-0 flex flex-col items-center px-10 py-5 '>
           <Image
@@ -79,13 +80,22 @@ const Profile = () => {
               tabs === 3 && "bg-primary text-white"
             }`}
           >
+            <FaBullhorn />
+            <button className='ml-1'>Campaign</button>
+          </li>
+          <li
+            onClick={() => setTabs(4)}
+            className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
+              tabs === 4 && "bg-primary text-white"
+            }`}
+          >
             <FaWindowMaximize />
             <button className='ml-1'>Footer</button>
           </li>
           <li
             onClick={closeAdminAccount}
             className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
-              tabs === 4 && "bg-primary text-white"
+              tabs === 5 && "bg-primary text-white"
             }`}
           >
             <FaSignOutAlt />
@@ -96,14 +106,8 @@ const Profile = () => {
       {tabs === 0 && <Products />}
       {tabs === 1 && <Order />}
       {tabs === 2 && <Category />}
-      {tabs === 3 && <Footer />}
-      {isProductModal && <AddProduct setIsProductModal={setIsProductModal} />}
-      <button
-        onClick={() => setIsProductModal(true)}
-        className='btn-primary !w-12 !h-12 !p-0 absolute right-5 top-28 text-4xl'
-      >
-        +
-      </button>
+      {tabs === 4 && <Footer />}
+      {tabs === 3 && <Campaign />}
     </div>
   );
 };
