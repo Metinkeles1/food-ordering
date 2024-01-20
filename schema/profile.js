@@ -9,11 +9,7 @@ export const profileSchema = Yup.object({
         .min(10, "phone number must be at least 10 character"),
     email: Yup.string()
         .required("Email is required")
-        .email("email is invalid"),
-    job: Yup.string()
-        .required("job is required"),
+        .email("email is invalid"),    
     address: Yup.string()
-        .required("address is required"),
-    bio: Yup.string()
-        .required("bio is required")
+        .required("address is required"), 
 })
