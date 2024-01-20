@@ -5,7 +5,7 @@ import { GiCancel } from "react-icons/gi";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const AddProduct = ({ setIsProductModal }) => {
+const AddProduct = ({ setIsCreateProductModal }) => {
   const [file, setFile] = useState();
   const [imageSrc, setImageSrc] = useState();
 
@@ -93,7 +93,7 @@ const AddProduct = ({ setIsProductModal }) => {
       );
 
       if (res.status === 200) {
-        setIsProductModal(false);
+        setIsCreateProductModal(false);
         toast.success("Product created successfully!");
       }
     } catch (err) {
@@ -103,7 +103,9 @@ const AddProduct = ({ setIsProductModal }) => {
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 after:content-[''] after:w-screen after:h-screen after:bg-white after:absolute after:top-0 after:left-0 after:opacity-60 grid place-content-center">
-      <OutsideClickHandler onOutsideClick={() => setIsProductModal(false)}>
+      <OutsideClickHandler
+        onOutsideClick={() => setIsCreateProductModal(false)}
+      >
         <div className='w-full h-full grid place-content-center relative'>
           <div className='relative z-50 md:w-[600px] w-[370px]  bg-white border-2 p-10 rounded-3xl'>
             <Title addClass='text-[40px] text-center'>Add a New Product</Title>
@@ -267,7 +269,7 @@ const AddProduct = ({ setIsProductModal }) => {
             </div>
             <button
               className='absolute  top-4 right-4'
-              onClick={() => setIsProductModal(false)}
+              onClick={() => setIsCreateProductModal(false)}
             >
               <GiCancel size={25} className=' transition-all' />
             </button>
