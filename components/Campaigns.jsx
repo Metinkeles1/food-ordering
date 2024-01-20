@@ -56,11 +56,11 @@ const CampaignItem = ({ campaignItem }) => {
 const Campaigns = ({ campaignList }) => {
   const productsWithValidCampaigns = campaignList.filter((product) => {
     const currentDate = new Date().toISOString();
-    const campaignStartDate = product.campaign.startDate;
-    const campaignEndDate = product.campaign.endDate;
+    const campaignStartDate = product.campaign?.startDate;
+    const campaignEndDate = product.campaign?.endDate;
     return (
       product.campaign &&
-      product.campaign._id !== "65a0244adff44cb1cb1e72b7" &&
+      product.campaign._id !== "65aa8b76a44734ee5efc6116" &&
       currentDate >= campaignStartDate &&
       currentDate <= campaignEndDate
     );
