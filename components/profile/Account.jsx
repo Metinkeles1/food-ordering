@@ -13,6 +13,7 @@ const Account = ({ user }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}`,
         values
       );
+      console.log(res.data);
       if (res.status === 200) toast.success("Profile Updated Success");
     } catch (err) {
       console.log(err);
