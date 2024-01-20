@@ -15,6 +15,7 @@ const CampaignSchema = new mongoose.Schema({
   discount: {
     type: Number,
     required: true,
+    min: 0, 
   },
   startDate: {
     type: Date,
