@@ -15,8 +15,6 @@ const handler = async (req, res) => {
         const productWithCampaign = await Product.find().populate('campaign');
         
         res.status(200).json(productWithCampaign);       
-
-        res.status(200).json(productWithCampaign);
       } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
