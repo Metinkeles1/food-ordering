@@ -6,7 +6,7 @@ import { IoIosMegaphone } from "react-icons/io";
 import { useState } from "react";
 import Products from "../../components/admin/product/Products";
 import Order from "../../components/admin/order/Order";
-import Campaign from "../../components/admin/campaign/Campaign";
+import Campaigns from "../../components/admin/campaign/Campaigns";
 import Category from "../../components/admin/Category";
 import AddProduct from "../../components/admin/product/AddProduct";
 import Footer from "../../components/admin/Footer";
@@ -107,7 +107,7 @@ const Profile = () => {
       {tabs === 1 && <Order />}
       {tabs === 2 && <Category />}
       {tabs === 4 && <Footer />}
-      {tabs === 3 && <Campaign />}
+      {tabs === 3 && <Campaigns />}
     </div>
   );
 };
