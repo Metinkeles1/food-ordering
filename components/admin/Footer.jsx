@@ -27,8 +27,6 @@ const Footer = () => {
     getFooterData();
   }, []);
 
-  console.log(footerData);
-
   const onSubmit = async (values, actions) => {
     try {
       const res = await axios.put(
