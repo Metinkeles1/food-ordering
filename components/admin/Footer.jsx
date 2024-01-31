@@ -10,7 +10,9 @@ const Footer = () => {
   const [footerData, setFooterData] = useState([]);
   const [iconName, setIconName] = useState("fa fa-");
   const [linkAddress, setLinkAddress] = useState("https://");
-  const [socialMediaLinks, setSocialMediaLinks] = useState([]);
+  const [socialMediaLinks, setSocialMediaLinks] = useState(
+    footerData?.socialMedia || []
+  );
 
   useEffect(() => {
     const getFooterData = async () => {
