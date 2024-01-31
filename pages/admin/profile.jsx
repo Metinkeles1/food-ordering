@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { FaBullhorn, FaWindowMaximize, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaBullhorn,
+  FaWindowMaximize,
+  FaSignOutAlt,
+  FaInfoCircle,
+} from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { BiSolidCategory } from "react-icons/bi";
 import { IoIosMegaphone } from "react-icons/io";
@@ -9,6 +14,7 @@ import Order from "../../components/admin/order/Order";
 import Campaigns from "../../components/admin/campaign/Campaigns";
 import Category from "../../components/admin/Category";
 import AddProduct from "../../components/admin/product/AddProduct";
+import About from "../../components/admin/about/about";
 import Footer from "../../components/admin/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -89,13 +95,22 @@ const Profile = () => {
               tabs === 4 && "bg-primary text-white"
             }`}
           >
+            <FaInfoCircle />
+            <button className='ml-1'>About</button>
+          </li>
+          <li
+            onClick={() => setTabs(5)}
+            className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
+              tabs === 5 && "bg-primary text-white"
+            }`}
+          >
             <FaWindowMaximize />
             <button className='ml-1'>Footer</button>
           </li>
           <li
             onClick={closeAdminAccount}
             className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
-              tabs === 5 && "bg-primary text-white"
+              tabs === 6 && "bg-primary text-white"
             }`}
           >
             <FaSignOutAlt />
@@ -106,8 +121,9 @@ const Profile = () => {
       {tabs === 0 && <Products />}
       {tabs === 1 && <Order />}
       {tabs === 2 && <Category />}
-      {tabs === 4 && <Footer />}
       {tabs === 3 && <Campaigns />}
+      {tabs === 4 && <About />}
+      {tabs === 5 && <Footer />}
     </div>
   );
 };
