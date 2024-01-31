@@ -96,7 +96,7 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
         category: category.toLowerCase(),
         prices,
         extraOptions,
-        campaign: selectedCampaignId, // Boş veya seçilen kampanya değeri
+        campaign: selectedCampaignId,
       };
 
       const res = await axios.put(
@@ -115,7 +115,6 @@ const UpdateProduct = ({ setIsProductModal, product, onUpdateSuccess }) => {
         error.response?.data || error.message
       );
 
-      // Hatayı inceleme amaçlı
       throw error;
     }
   };
