@@ -1,5 +1,33 @@
-const Input = (props) => {
-  const { type, placeholder, errorMessage, touched, ...inputProps } = props;
+const Input = ({
+  type,
+  placeholder,
+  errorMessage,
+  touched,
+  value,
+  onChange,
+  onBlur,
+  ...inputProps
+}) => {
+  if (type === "textarea") {
+    return (
+      <div className='w-full'>
+        <label className='relative block cursor-text w-full'>
+          <textarea
+            className={`h-36 w-full border outline-none p-4 pt-2 ${
+              touched && errorMessage ? "border-danger" : "border-primary"
+            }`}
+            required
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            {...inputProps}
+          />
+        </label>
+        {touched && <span className='text-xs text-danger'>{errorMessage}</span>}
+      </div>
+    );
+  }
+
   return (
     <div className='w-full'>
       <label className='relative block cursor-text w-full'>
@@ -9,6 +37,9 @@ const Input = (props) => {
             type !== "datetime-local" && "pt-2"
           } ${touched && errorMessage ? "border-danger" : "border-primary"}`}
           required
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
           {...inputProps}
         />
         {type !== "datetime-local" && (
