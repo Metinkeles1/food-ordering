@@ -1,11 +1,11 @@
-import About from '../../components/About'
+import About from "../../components/About";
 
 const Index = () => {
   return (
     <div>
-        <About/>
+      <About />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
