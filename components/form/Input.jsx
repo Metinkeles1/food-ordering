@@ -3,7 +3,7 @@ const Input = ({
   placeholder,
   errorMessage,
   touched,
-  value,
+  value = "",
   onChange,
   onBlur,
   ...inputProps
