@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Title from "../../ui/Title";
 import axios from "axios";
 
-const reservations = () => {
+const Reservations = () => {
   const [reservationData, setReservationData] = useState([]);
   const [reservationStatus, setReservationStatus] = useState([
     "Pending",
@@ -151,4 +151,4 @@ const reservations = () => {
   );
 };
 
-export default reservations;
+export default Reservations;
