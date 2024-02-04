@@ -7,24 +7,12 @@ import axios from "axios";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const AddCampaign = ({ setIsAddCampaignModal, updateCampaigns }) => {
-  const [initialStartDate, setInitialStartDate] = useState(
-    new Date().toISOString().slice(0, 16)
-  );
-  const [initialEndDate, setInitialEndDate] = useState(
-    new Date().toISOString().slice(0, 16)
-  );
-
-  useEffect(() => {
-    setInitialStartDate(new Date().toISOString().slice(0, 16));
-    setInitialEndDate(new Date().toISOString().slice(0, 16));
-  }, []);
-
   const initialValues = {
     title: "",
     description: "",
     discount: 0,
-    startDate: initialStartDate,
-    endDate: initialEndDate,
+    startDate: new Date().toISOString().slice(0, 16),
+    endDate: new Date().toISOString().slice(0, 16),
   };
 
   const onSubmit = async (values, actions) => {
