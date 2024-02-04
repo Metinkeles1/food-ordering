@@ -11,6 +11,7 @@ const Input = ({
   if (type === "textarea") {
     return (
       <div className='w-full'>
+        <span className='ml-4'>Message</span>
         <label className='relative block cursor-text w-full'>
           <textarea
             className={`h-36 w-full border outline-none p-4 pt-2 ${
