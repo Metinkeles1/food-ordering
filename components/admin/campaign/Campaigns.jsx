@@ -11,7 +11,10 @@ const Campaigns = () => {
   const [notStartedCampaigns, setNotStartedCampaigns] = useState([]);
   const [isAddCampaignModal, setIsAddCampaignModal] = useState(false);
   const [noCampaignID, setNoCampaignID] = useState("65aa8b76a44734ee5efc6116");
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date();
+  const utcCurrentDate = new Date(
+    currentDate.setUTCHours(currentDate.getUTCHours() + 3)
+  ).toISOString();
 
   const getCampaigns = async () => {
     try {
@@ -22,14 +25,14 @@ const Campaigns = () => {
       const activeCampaigns = res.data.filter(
         (item) =>
           item._id !== noCampaignID &&
-          item.endDate > currentDate &&
-          item.startDate < currentDate
+          item.endDate > utcCurrentDate &&
+          item.startDate < utcCurrentDate
       );
       const expiredCampaigns = res.data.filter(
-        (item) => item._id !== noCampaignID && item.endDate <= currentDate
+        (item) => item._id !== noCampaignID && item.endDate <= utcCurrentDate
       );
       const notStartedCampaigns = res.data.filter(
-        (item) => item._id !== noCampaignID && item.startDate > currentDate
+        (item) => item._id !== noCampaignID && item.startDate > utcCurrentDate
       );
 
       setCampaigns(res.data.filter((item) => item._id !== noCampaignID));
@@ -56,7 +59,7 @@ const Campaigns = () => {
           <Title addClass='text-[40px]'>Campaign</Title>
         </div>
 
-        <div className='mt-8 grid 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4 min-h-[230px] overflow-y-auto max-h-[330px]'>
+        <div className='mt-8 grid 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4 min-h-[230px] overflow-y-auto max-h-[430px]'>
           {[
             ...activeCampaigns,
             ...notStartedCampaigns,
