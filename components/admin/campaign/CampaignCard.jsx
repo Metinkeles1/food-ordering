@@ -33,14 +33,22 @@ const CampaignCard = ({ campaign, updateCampaigns }) => {
     }
   };
 
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date();
+  const utcCurrentDate = new Date(
+    currentDate.setUTCHours(currentDate.getUTCHours() + 3)
+  ).toISOString();
 
   let cardType = "expired";
 
-  if (campaign.startDate > currentDate) {
-    cardType = "notStarted";
-  } else if (campaign.endDate > currentDate) {
+  if (
+    campaign.startDate <= utcCurrentDate &&
+    campaign.endDate > utcCurrentDate
+  ) {
     cardType = "active";
+  } else if (campaign.startDate > utcCurrentDate) {
+    cardType = "notStarted";
+  } else {
+    cardType = "expired";
   }
 
   return (
