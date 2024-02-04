@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Title from "../../ui/Title";
+import Title from "../ui/Title";
 import axios from "axios";
 import React from "react";
 

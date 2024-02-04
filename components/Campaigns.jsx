@@ -54,7 +54,7 @@ const CampaignItem = ({ campaignItem }) => {
 };
 
 const Campaigns = ({ campaignList }) => {
-  const productsWithValidCampaigns = campaignList.filter((product) => {
+  const productsWithValidCampaigns = campaignList?.filter((product) => {
     const currentDate = new Date().toISOString();
     const campaignStartDate = product.campaign?.startDate;
     const campaignEndDate = product.campaign?.endDate;
@@ -68,7 +68,7 @@ const Campaigns = ({ campaignList }) => {
 
   return (
     <div className='flex container mx-auto py-20 gap-6 flex-wrap'>
-      {productsWithValidCampaigns.map((campaign) => (
+      {productsWithValidCampaigns?.map((campaign) => (
         <CampaignItem key={campaign._id} campaignItem={campaign} />
       ))}
     </div>

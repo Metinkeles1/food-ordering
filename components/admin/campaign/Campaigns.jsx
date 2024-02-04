@@ -16,37 +16,42 @@ const Campaigns = () => {
     currentDate.setUTCHours(currentDate.getUTCHours() + 3)
   ).toISOString();
 
-  const getCampaigns = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/campaigns`
-      );
-
-      const activeCampaigns = res.data.filter(
-        (item) =>
-          item._id !== noCampaignID &&
-          item.endDate > utcCurrentDate &&
-          item.startDate < utcCurrentDate
-      );
-      const expiredCampaigns = res.data.filter(
-        (item) => item._id !== noCampaignID && item.endDate <= utcCurrentDate
-      );
-      const notStartedCampaigns = res.data.filter(
-        (item) => item._id !== noCampaignID && item.startDate > utcCurrentDate
-      );
-
-      setCampaigns(res.data.filter((item) => item._id !== noCampaignID));
-      setActiveCampaigns(activeCampaigns);
-      setExpiredCampaigns(expiredCampaigns);
-      setNotStartedCampaigns(notStartedCampaigns);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/campaigns`
+        );
+
+        const activeCampaigns =
+          res.data?.filter(
+            (item) =>
+              item?._id !== noCampaignID &&
+              item?.endDate > utcCurrentDate &&
+              item?.startDate < utcCurrentDate
+          ) || [];
+        const expiredCampaigns =
+          res.data?.filter(
+            (item) =>
+              item?._id !== noCampaignID && item?.endDate <= utcCurrentDate
+          ) || [];
+        const notStartedCampaigns =
+          res.data?.filter(
+            (item) =>
+              item?._id !== noCampaignID && item?.startDate > utcCurrentDate
+          ) || [];
+
+        setCampaigns(res.data.filter((item) => item._id !== noCampaignID));
+        setActiveCampaigns(activeCampaigns);
+        setExpiredCampaigns(expiredCampaigns);
+        setNotStartedCampaigns(notStartedCampaigns);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getCampaigns();
-  }, []);
+  }, [noCampaignID, utcCurrentDate]);
 
   const updateCampaigns = () => {
     getCampaigns();

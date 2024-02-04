@@ -14,7 +14,7 @@ import Products from "../../components/admin/product/Products";
 import Order from "../../components/admin/order/Order";
 import Campaigns from "../../components/admin/campaign/Campaigns";
 import Category from "../../components/admin/Category";
-import Reservation from "../../components/admin/reservation/Reservations";
+import Reservation from "../../components/admin/Reservations";
 import AddProduct from "../../components/admin/product/AddProduct";
 import About from "../../components/admin/about/about";
 import Footer from "../../components/admin/Footer";
