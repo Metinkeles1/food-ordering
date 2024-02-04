@@ -18,8 +18,7 @@ const handler = async (req, res) => {
       break;
 
     case "POST":
-      try {
-        // Kontrol et: Eğer kampanya belirtilmemişse, varsayılan kampanya "No Campaign" olarak ayarla
+      try {        
         if (!req.body.campaign) {
           req.body.campaign = { title: "No Campaign", discount: 0 };
         }
