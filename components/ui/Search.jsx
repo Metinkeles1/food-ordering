@@ -23,6 +23,7 @@ const Search = ({ setIsSearchModal }) => {
         );
         setFoodProducts(res.data);
         setFiltered(res.data.slice(0, 5));
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -45,7 +46,11 @@ const Search = ({ setIsSearchModal }) => {
         <div className='w-full h-full grid place-content-center'>
           <div className='relative z-50 md:w-[600px] w-[370px] bg-white border-2 p-10 rounded-3xl'>
             <Title addClass='text-[40px] text-center mb-2'>Search</Title>
-            <Input placeholder='Search...' onChange={handleSearch} />
+            <input
+              className='h-14 w-full border outline-none px-4 peer border-primary'
+              placeholder='Search...'
+              onChange={handleSearch}
+            />
             {foodProducts.length > 0 ? (
               <ul className='mt-4'>
                 {filtered.length > 0 ? (
