@@ -4,6 +4,7 @@ import {
   FaWindowMaximize,
   FaSignOutAlt,
   FaInfoCircle,
+  FaCalendarAlt,
 } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { BiSolidCategory } from "react-icons/bi";
@@ -13,6 +14,7 @@ import Products from "../../components/admin/product/Products";
 import Order from "../../components/admin/order/Order";
 import Campaigns from "../../components/admin/campaign/Campaigns";
 import Category from "../../components/admin/Category";
+import Reservation from "../../components/admin/reservation/Reservations";
 import AddProduct from "../../components/admin/product/AddProduct";
 import About from "../../components/admin/about/about";
 import Footer from "../../components/admin/Footer";
@@ -104,13 +106,22 @@ const Profile = () => {
               tabs === 5 && "bg-primary text-white"
             }`}
           >
+            <FaCalendarAlt />
+            <button className='ml-1'>Reservation</button>
+          </li>
+          <li
+            onClick={() => setTabs(6)}
+            className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
+              tabs === 6 && "bg-primary text-white"
+            }`}
+          >
             <FaWindowMaximize />
             <button className='ml-1'>Footer</button>
           </li>
           <li
             onClick={closeAdminAccount}
             className={`border-t-0 border w-full p-3 cursor-pointer hover:bg-primary hover:text-white transition-all flex items-center justify-center ${
-              tabs === 6 && "bg-primary text-white"
+              tabs === 7 && "bg-primary text-white"
             }`}
           >
             <FaSignOutAlt />
@@ -123,7 +134,8 @@ const Profile = () => {
       {tabs === 2 && <Category />}
       {tabs === 3 && <Campaigns />}
       {tabs === 4 && <About />}
-      {tabs === 5 && <Footer />}
+      {tabs === 5 && <Reservation />}
+      {tabs === 6 && <Footer />}
     </div>
   );
 };
