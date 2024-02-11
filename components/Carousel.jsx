@@ -30,7 +30,7 @@ const Carousel = () => {
       <div className='absolute top-0 left-0 w-full h-full'>
         <div className='relative h-full w-full'>
           <Image
-            src='/images/hero-bg.jpg'
+            src='/images/hero-bg-2.jpg'
             alt=''
             layout='fill'
             objectFit='cover'
@@ -38,6 +38,7 @@ const Carousel = () => {
           />
         </div>
       </div>
+      <div className='absolute top-0 left-0 w-full h-full bg-black opacity-60'></div>
       <Slider {...settings}>
         <div>
           <div className='container mx-auto sm:mt-52 sm:top-48 mt-20 top-20 text-white flex flex-col items-start gap-y-10'>
@@ -48,7 +49,9 @@ const Carousel = () => {
               Tempora ex doloremque, labore, sunt repellat dolore, iste magni
               quos nihil ducimus libero ipsam.
             </p>
-            <button className='btn-primary'>Order Now</button>
+            <a href='/menu' className='btn-primary'>
+              Order Now
+            </a>
           </div>
         </div>
         <div>
@@ -60,7 +63,9 @@ const Carousel = () => {
               Tempora ex doloremque, labore, sunt repellat dolore, iste magni
               quos nihil ducimus libero ipsam.
             </p>
-            <button className='btn-primary'>Order Now</button>
+            <a href='/menu' className='btn-primary'>
+              Order Now
+            </a>
           </div>
         </div>
       </Slider>

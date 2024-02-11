@@ -110,7 +110,7 @@ const Header = () => {
           <button onClick={() => setIsSearchModal(true)}>
             <FaSearch className='hover:text-primary transition-all' size={18} />
           </button>
-          <a href='#' className='md:inline-block hidden sm'>
+          <a href='/auth/login' className='md:inline-block hidden sm'>
             <button className='btn-primary'>Order Online</button>
           </a>
           <button
