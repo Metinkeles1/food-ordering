@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Title from "./ui/Title";
 import Slider from "react-slick";
+import Link from "next/link";
 
 const Carousel = () => {
   const settings = {
@@ -49,9 +50,10 @@ const Carousel = () => {
               Tempora ex doloremque, labore, sunt repellat dolore, iste magni
               quos nihil ducimus libero ipsamm.
             </p>
-            <a href='/menu' className='btn-primary'>
-              Order Now
-            </a>
+
+            <Link href='/menu' className='md:inline-block hidden sm'>
+              <button className='btn-primary'>Order Now</button>
+            </Link>
           </div>
         </div>
         <div>
@@ -63,9 +65,9 @@ const Carousel = () => {
               Tempora ex doloremque, labore, sunt repellat dolore, iste magni
               quos nihil ducimus libero ipsam.
             </p>
-            <a href='/menu' className='btn-primary'>
-              Order Now
-            </a>
+            <Link href='/menu' className='md:inline-block hidden sm'>
+              <button className='btn-primary'>Order Now</button>
+            </Link>
           </div>
         </div>
       </Slider>
