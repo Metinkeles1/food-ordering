@@ -1,91 +1,101 @@
-<a href="https://food-ordering-nextjs-five.vercel.app/">Demo Link <a/>
-<br/>
-# Modern Full Stack Web Projects
+<div align="center">
+  <br />    
+      <img src="https://raw.githubusercontent.com/Metinkeles1/car-showcase-nextjs/master/assets/car-showcase-img.png" alt="Project Banner">    
+  <br />
 
-This project is a Full Stack web application developed using modern technologies such as React, Next.js, Tailwind CSS, Redux, Redux-Toolkit, Next-Auth, and Deployment.
 
-## Purpose
+  <div>
+    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
+     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+  </div>
+
+  <h3 align="center">A Food Ordering Website</h3>
+</div>
+
+## 📋 <a name="table">Table of Contents</a>
+
+1. 🤖 [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 🤸 [Quick Start](#quick-start)
+5. 🕸️ [Snippets](#snippets)
+
+## <a name="introduction">🤖 Introduction</a>
 
 The main purpose of this project is to guide the user in practicing modern web development technologies by building a Full Stack project. The goal is to gain knowledge and experience with the technologies used in the project and, upon completion, develop the ability to earn income through freelance projects.
 
-## Technologies and Libraries
+## <a name="tech-stack">⚙️ Tech Stack</a>
 
-The project includes the following technologies and libraries:
+- Next.js
+- JavaScript
+- Tailwind CSS
+- Redux and Redux-Toolkit
+- Next-Auth
 
-- **React:** A JavaScript library used to create the user interface.
-  
-- **Next.js:** A React-based framework that supports features such as Server Side Rendering (SSR) and Static Site Generation (SSG).
+## <a name="features">🔋 Features</a>
 
-- **Tailwind CSS:** A versatile CSS library used for fast and flexible styling.
+👉 **Home Page**: Showcases a visually appealing display of cars fetched from a third-party API, providing a captivating introduction to the diverse range of vehicles available.
 
-- **Redux and Redux-Toolkit:** Libraries used for state management.
+👉 **Exploration and Filtering**: Explore a wide variety of cars from around the world, utilizing a search and filter system based on criteria such as model, manufacturer, year, fuel type, and make.
 
-- **Next-Auth:** A library used for authentication processes.
+👉 **Transition to Server-Side Rendering**: A seamless transition from client-side rendering to server-side rendering, enhancing performance and providing a smoother browsing experience.
 
-## Project Content
+👉 **Pagination**: For easy navigation through a large dataset of cars, allowing users to explore multiple pages effortlessly.
 
-The project covers the following topics:
+👉 **Metadata Optimization and SEO**: Optimize metadata for car listing, enhancing search engine optimization (SEO) and ensuring better visibility on search engine results pages.
 
-- **Single Page Application Logic:** Explanation of the Single Page Application (SPA) concept used in the project.
+👉 **TypeScript Types**: Utilize TypeScript to provide robust typing for enhanced code quality and better development
 
-- **Freelance Project Development Logic:** The development process of freelance projects and important considerations.
+👉 **Responsive Website Design**: The website is designed to be visually pleasing and responsive, ensuring an optimal user experience across various devices.
 
-- **Difference Between Client Side and Server Side Rendering:** Explanation of the differences between Client Side and Server Side rendering concepts.
+👉 **Authentication Processes with Next-Auth:** Explanation of how authentication processes are implemented using Next-Auth.
 
-- **Packages in Next.js:** Explanation of the Next.js packages used in the development process.
+👉 **Validation Processes with Yup:** Instruction on how validation processes are implemented using Yup.
 
-- **Responsive Transitions with Tailwind CSS:** Instruction on how to implement responsive design using Tailwind CSS.
+👉 **Adding an Admin Panel to the Project:** Instruction on how to add an admin management panel to the project.
 
-- **Authentication Processes with Next-Auth:** Explanation of how authentication processes are implemented using Next-Auth.
+👉 **Database Operations with MongoDB:** Instruction on how database operations are performed using MongoDB.
 
-- **State Management with Redux-Toolkit:** Instruction on how state management is implemented using Redux-Toolkit.
+👉 **Hashing Passwords Created:** Instruction on how passwords created for security purposes are hashed.
 
-- **Form Control with Formik:** Explanation of how form control is achieved using Formik.
+and many more, including code architecture and reusability
 
-- **Validation Processes with Yup:** Instruction on how validation processes are implemented using Yup.
+## <a name="quick-start">🤸 Quick Start</a>
 
-- **Adding an Admin Panel to the Project:** Instruction on how to add an admin management panel to the project.
+Follow these steps to set up the project locally on your machine.
 
-- **Database Operations with MongoDB:** Instruction on how database operations are performed using MongoDB.
+**Prerequisites**
 
-- **Creating an API from Scratch:** Explanation of how to create an API from scratch.
+Make sure you have the following installed on your machine:
 
-- **Hashing Passwords Created:** Instruction on how passwords created for security purposes are hashed.
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
 
-- **Deployment of the Project:** Explanation of the methods and steps used for deploying the project.
+**Cloning the Repository**
 
+```bash
+git clone https://github.com/Metinkeles1/food-ordering-nextjs.git
+cd food-ordering-nextjs
+```
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**Installation**
 
-## Getting Started
+Install the project dependencies using npm:
 
-First, run the development server:
+```bash
+npm install
+```
+
+**Running the Project**
 
 ```bash
 npm run dev
-# or
-yarn dev
+
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## <a name="snippets">🕸️ Snippets</a>
