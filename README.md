@@ -1,8 +1,7 @@
 <div align="center">
   <br />    
-      <img src="https://raw.githubusercontent.com/Metinkeles1/car-showcase-nextjs/master/assets/car-showcase-img.png" alt="Project Banner">    
+      <img src="https://raw.githubusercontent.com/Metinkeles1/food-ordering-nextjs/master/assets/food-ordering.png" alt="Project Banner">    
   <br />
-
 
   <div>
     <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
