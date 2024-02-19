@@ -4,10 +4,13 @@
   <br />
 
   <div>
-    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
-  </div>
+  <img src="https://img.shields.io/badge/-Javascript-black?style=for-the-badge&logoColor=white&logo=javascript&color=3178C6" alt="javascript" />
+  <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
+  <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+  <img src="https://img.shields.io/badge/-Redux-black?style=for-the-badge&logo=redux&color=764ABC" alt="redux" />
+  <img src="https://img.shields.io/badge/-Next_Auth-black?style=for-the-badge&logo=next.js&color=000000" alt="next-auth" />
+   <img src="https://img.shields.io/badge/-MongoDB-black?style=for-the-badge&logo=mongodb&color=47A248" alt="mongodb" />
+</div>
 
   <h3 align="center">A Food Ordering Website</h3>
 </div>
@@ -30,20 +33,19 @@ The main purpose of this project is to guide the user in practicing modern web d
 - Tailwind CSS
 - Redux and Redux-Toolkit
 - Next-Auth
+- MongoDB
 
 ## <a name="features">🔋 Features</a>
 
-👉 **Home Page**: Showcases a visually appealing display of cars fetched from a third-party API, providing a captivating introduction to the diverse range of vehicles available.
+👉 **Home Page**: The home page showcases visually appealing displays of meals fetched directly from the database, providing an enticing introduction to the diverse range of available dishes. This offers customers an instantly updated collection of meals, enhancing interaction and user experience.
 
-👉 **Exploration and Filtering**: Explore a wide variety of cars from around the world, utilizing a search and filter system based on criteria such as model, manufacturer, year, fuel type, and make.
+👉 **Explore and Filter**: Discover a wide variety of fast food items from every category, list the products added by the admin, and add them to your cart.
 
 👉 **Transition to Server-Side Rendering**: A seamless transition from client-side rendering to server-side rendering, enhancing performance and providing a smoother browsing experience.
 
-👉 **Pagination**: For easy navigation through a large dataset of cars, allowing users to explore multiple pages effortlessly.
+👉 **Pagination**: For easy navigation through a large dataset of products, allowing users to explore multiple pages effortlessly.
 
-👉 **Metadata Optimization and SEO**: Optimize metadata for car listing, enhancing search engine optimization (SEO) and ensuring better visibility on search engine results pages.
-
-👉 **TypeScript Types**: Utilize TypeScript to provide robust typing for enhanced code quality and better development
+👉 **Metadata Optimization and SEO**: Optimize metadata for product listing, enhancing search engine optimization (SEO) and ensuring better visibility on search engine results pages.
 
 👉 **Responsive Website Design**: The website is designed to be visually pleasing and responsive, ensuring an optimal user experience across various devices.
 
