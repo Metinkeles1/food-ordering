@@ -22,17 +22,25 @@ const MenuItem = ({ product }) => {
   };
 
   return (
-    <div className='bg-secondary rounded-3xl'>
-      <div className='w-full bg-[#f1f2f3] rounded-2xl h-[210px] grid place-content-center rounded-bl-[46px]'>
+    <div className='w-full h-full bg-[#f1f2f3] flex flex-col justify-center items-center rounded-3xl rounded-br-none'>
+      <div className='relative w-full h-full flex justify-center items-center bg-primary rounded-bl-[100px] rounded-br-none rounded-3xl'>
         <Link href={`/product/${product._id}`}>
-          <div className='relative w-36 h-36 hover:scale-110 transition-all'>
-            <Image src={product.img} alt='' layout='fill' priority />
+          <div className='relative w-64 h-64 hover:scale-110 transition-all'>
+            <Image
+              src={product.img}
+              alt={product.name}
+              layout='fill'
+              objectFit='contain'
+              priority
+            />
           </div>
         </Link>
       </div>
-      <div className='p-[25px] text-white'>
-        <h4 className='text-xl font-semibold'>{product.title}</h4>
-        <p className='text-[15px] h-20'>{product.desc.substring(0, 150)}...</p>
+      <div className='m-4 py-4 min-h-[170px]'>
+        <span className='font-bold '>{product.title}</span>
+        <span className='block text-gray-500 text-sm pt-3 min-h-[80px]'>
+          {product.desc.substring(0, 150)}...
+        </span>
         <div className='flex justify-between items-center mt-3'>
           <span>${product.prices[0]}</span>
           <button

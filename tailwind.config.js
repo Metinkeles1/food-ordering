@@ -17,21 +17,20 @@ module.exports = {
           md: "768px",
           lg: "1024px",
           xl: "1140px",
-          "2xl": "1140px"
-        }
+          "2xl": "1140px",
+        },
       },
       colors: {
-        primary: "#ffbe33",
+        primary: "#D35400",
         secondary: "#222831",
-        danger: "#ff0000",
+        danger: "#FF0000",
         success: "#198754",
-        warning: "#FFC107"
+        warning: "#FFC107",
       },
       fontFamily: {
-        dancing: ["Dancing Script", "cursive"],
-        sans: ["Open Sans", "sans-serif"],
-      }
+        raleway: ["Raleway", "sans-serif"],
+      },
     },
   },
   plugins: [],
-}
+};
