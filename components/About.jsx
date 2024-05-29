@@ -21,7 +21,9 @@ const About = () => {
       <div className='container mx-auto flex items-center text-white gap-20 justify-center flex-wrap-reverse'>
         <div className='flex justify-center'>
           <div className='relative sm:w-[445px] sm:h-[600px]  flex justify-center w-[370px] h-[610px]'>
-            <Image src={aboutData.img} alt='' layout='fill' />
+            {aboutData?.img && (
+              <Image src={aboutData.img} alt='' layout='fill' priority />
+            )}
           </div>
         </div>
         <div className='md:w-1/2 '>
