@@ -67,7 +67,7 @@ const Campaigns = ({ campaignList }) => {
   });
 
   return (
-    <div className='flex container mx-auto justify-center py-2 gap-6 flex-wrap'>
+    <div className='flex container mx-auto justify-center py-8 gap-6 flex-wrap'>
       {productsWithValidCampaigns?.map((campaign) => (
         <CampaignItem key={campaign._id} campaignItem={campaign} />
       ))}
